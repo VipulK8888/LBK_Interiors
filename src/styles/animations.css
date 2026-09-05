@@ -1,0 +1,93 @@
+/* ==========================================================================
+   LBK SURFACES — EDITORIAL ANIMATIONS & MOTION
+   Calm, Slow, Expensive & Sophisticated Transitions
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Reveal Classes
+   -------------------------------------------------------------------------- */
+
+.reveal-init {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-editorial),
+              transform var(--duration-slow) var(--ease-editorial);
+  will-change: opacity, transform;
+}
+
+.reveal-init.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays for Grouped Elements */
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+.stagger-5 { transition-delay: 400ms; }
+
+/* Image Clip-Path Curtain Reveal */
+.reveal-curtain-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-curtain-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.reveal-curtain-wrap.revealed::after {
+  transform: scaleY(0);
+}
+
+/* Slow Ken-Burns Scale on Visible Containers */
+.slow-zoom-in {
+  transform: scale(1.08);
+  transition: transform 1.4s var(--ease-editorial);
+}
+
+.slow-zoom-in.revealed {
+  transform: scale(1);
+}
+
+/* Page Transition Fade */
+.page-view-container {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms var(--ease-editorial),
+              transform 400ms var(--ease-editorial);
+}
+
+.page-view-container.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth Portfolio Item Transition */
+.portfolio-item-transition {
+  transition: opacity 350ms var(--ease-editorial),
+              transform 350ms var(--ease-editorial);
+}
+
+.portfolio-item-transition.is-hidden {
+  display: none;
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+/* Parallax subtle transform */
+.parallax-subtle {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
