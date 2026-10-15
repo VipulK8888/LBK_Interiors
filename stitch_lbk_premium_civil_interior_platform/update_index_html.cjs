@@ -1,0 +1,1132 @@
+const fs = require('fs');
+const path = require('path');
+
+const htmlContent = `<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lalchand Banshidhar Kumawat (LBK) | Civil Work Contractor & Architectural Stone</title>
+  <meta name="description" content="Master Civil Work Contractor in Udaipur, Rajasthan. Precision installation of Italian marble, granite cladding, large-format porcelain tiles, and luxury turnkey interior civil masonry." />
+  
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN & Custom Theme Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-fixed": "#1b1c1c",
+            "on-primary-fixed-variant": "#5c4202",
+            "inverse-on-surface": "#f2f1ee",
+            "inverse-surface": "#2f312f",
+            "surface-variant": "#e3e2e0",
+            "surface-container-high": "#e9e8e5",
+            "surface-bright": "#faf9f6",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-lowest": "#ffffff",
+            "surface-dim": "#dbdad7",
+            "on-tertiary-fixed-variant": "#474742",
+            "tertiary-fixed-dim": "#c9c6c0",
+            "primary-container": "#c5a15b",
+            "secondary-fixed": "#e4e2e1",
+            "primary-fixed-dim": "#e8c178",
+            "on-surface-variant": "#4e4639",
+            "on-error": "#ffffff",
+            "surface-tint": "#775a1b",
+            "on-primary-fixed": "#261900",
+            "outline": "#7f7667",
+            "surface-container-highest": "#e3e2e0",
+            "inverse-primary": "#e8c178",
+            "on-tertiary-fixed": "#1c1c18",
+            "outline-variant": "#d1c5b4",
+            "primary-fixed": "#ffdea4",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#474746",
+            "tertiary-container": "#a8a6a0",
+            "on-surface": "#1a1c1a",
+            "secondary-fixed-dim": "#c8c6c5",
+            "tertiary-fixed": "#e5e2db",
+            "on-error-container": "#93000a",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "primary": "#775a1b",
+            "surface-container": "#efeeeb",
+            "error": "#ba1a1a",
+            "tertiary": "#5f5e59",
+            "on-background": "#1a1c1a",
+            "on-secondary-container": "#656464",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#3c3c37",
+            "secondary": "#5f5e5e",
+            "secondary-container": "#e4e2e1",
+            "on-primary-container": "#4f3800",
+            "surface": "#faf9f6",
+            "background": "#faf9f6"
+          },
+          fontFamily: {
+            "display-hero": ["Playfair Display", "serif"],
+            "headline-lg": ["Playfair Display", "serif"],
+            "headline-xl": ["Playfair Display", "serif"],
+            "headline-sm": ["Playfair Display", "serif"],
+            "headline-md": ["Playfair Display", "serif"],
+            "label-sm": ["Manrope", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"]
+          },
+          fontSize: {
+            "display-hero": ["56px", { lineHeight: "64px", letterSpacing: "-0.02em", fontWeight: "400" }],
+            "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "label-sm": ["10px", { lineHeight: "14px", letterSpacing: "0.15em", fontWeight: "600" }],
+            "body-sm": ["13px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "400" }],
+            "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.12em", fontWeight: "600" }],
+            "headline-xl": ["40px", { lineHeight: "48px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "display-hero-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.01em", fontWeight: "400" }],
+            "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "0em", fontWeight: "400" }],
+            "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "0.01em", fontWeight: "500" }],
+            "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "0em", fontWeight: "500" }],
+            "body-md": ["15px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }],
+            "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }]
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.75rem",
+            "space-xl": "3rem",
+            "space-2xl": "5rem",
+            "gutter": "2rem",
+            "gutter-mobile": "1rem",
+            "margin": "4rem",
+            "margin-tablet": "2rem",
+            "margin-mobile": "1.25rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FAF9F6; }
+    ::-webkit-scrollbar-thumb { background: #D1C5B4; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C5A15B; }
+
+    /* Keyframe Animations */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shineSweep {
+      0% { transform: translateX(-100%) skewX(-20deg); }
+      100% { transform: translateX(220%) skewX(-20deg); }
+    }
+
+    .animate-hero-1 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .animate-hero-2 { animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards; opacity: 0; }
+    .animate-hero-3 { animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards; opacity: 0; }
+    .animate-hero-4 { animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.46s forwards; opacity: 0; }
+    .animate-hero-5 { animation: heroFadeUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; opacity: 0; }
+
+    /* Button Shine Sweep Effect */
+    .btn-shine-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: skewX(-20deg);
+    }
+    .btn-shine-wrap:hover::after {
+      animation: shineSweep 0.85s ease-out;
+    }
+
+    /* Scroll Reveal State Classes */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(24px) scale(0.99);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-section.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Pillar Hover Lift */
+    .pillar-card {
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+    }
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -10px rgba(197, 161, 91, 0.18), 0 8px 16px -4px rgba(0,0,0,0.06);
+      border-color: #c5a15b;
+    }
+    .pillar-card:hover .pillar-icon {
+      transform: rotate(12deg) scale(1.12);
+      color: #775a1b;
+    }
+    .pillar-icon {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+    }
+
+    /* Service Cards Hover */
+    .service-card {
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px -8px rgba(119, 90, 27, 0.12), 0 4px 12px rgba(0,0,0,0.04);
+      border-color: rgba(197, 161, 91, 0.5);
+    }
+    .service-card:hover .service-arrow {
+      transform: translateX(6px);
+    }
+    .service-arrow {
+      transition: transform 0.25s ease;
+    }
+
+    /* Process Card Hover Lift */
+    .process-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+    }
+    .process-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 16px 28px -6px rgba(197, 161, 91, 0.2);
+    }
+
+    /* Mobile Drawer */
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 320px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+      z-index: 60;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mobile-nav-drawer.is-open {
+      right: 0;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+
+  <!-- =====================================================================
+       FIXED LUXURY HEADER NAVIGATION
+       ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all duration-300">
+    <div class="h-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo / Wordmark -->
+      <a href="#scene-01" class="flex items-center gap-space-md group">
+        <img alt="LBK Brand Logo" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1XnuyDCru4PikoO1AyRjIx4WvgGV5oZa7VaBZ1pcXh3pyWkghelXorv72wG058If5OiJ8fcyt-XQK8_--djSbAZRGRiyCufrW_vjp4K7f_qvdVDmUR3DP6B5dvECUDqTe-AMdBGGQttP3sUiIJuiHMBvIH056TWzJ9N4Zh4UWTQNewz2L3XYNWbuPoyqxIjp8bTKY9VB_Lystt8n2fYTb0d62Sm6Gcpi8mCv440UHyoawB7MPaSM1JpKh0" />
+        <div class="flex flex-col justify-center">
+          <span class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold">Lalchand Banshidhar Kumawat</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant hidden sm:inline-block">Civil Work Contractor • Marble • Granite • Tiles</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+        <a class="uppercase transition-colors duration-200 text-primary font-semibold text-label-md" href="#scene-01">Home</a>
+        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-02">About</a>
+        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-04">Services</a>
+        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-03">Projects</a>
+        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-08">Our Process</a>
+        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#quote-section">Contact</a>
+      </nav>
+
+      <!-- Action Button & Mobile Hamburger -->
+      <div class="flex items-center gap-space-md">
+        <a class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all duration-200 btn-shine-wrap shadow-sm hover:shadow" href="#quote-section">
+          Get a Quote
+        </a>
+        <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center text-on-surface focus:outline-none" aria-label="Toggle Mobile Menu">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30 mb-6">
+        <span class="font-headline-sm text-headline-sm text-on-surface">LBK Contractor</span>
+        <button id="mobile-drawer-close" class="text-on-surface-variant hover:text-primary" onclick="document.getElementById('mobile-nav-drawer').classList.remove('is-open'); document.body.style.overflow='';" aria-label="Close menu">
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4">
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-01">Home</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-02">About</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-03">Projects 3D</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-04">Tile Engineering</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-05">Marble & Granite 3D</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-06">Transformation Slider</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-08">5-Step Process</a>
+        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2" href="#quote-section">Consultation Quote</a>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-outline-variant/20">
+      <a href="tel:+919876543210" class="block font-label-md text-primary font-semibold mb-1">+91 98765 43210</a>
+      <span class="font-body-sm text-on-surface-variant block">Sukher Industrial Complex, Udaipur</span>
+    </div>
+  </div>
+
+  <main class="w-full pt-20 bg-surface min-h-screen">
+    <div class="flex flex-col w-full relative">
+
+      <!-- FLOATING CINEMATIC NAVIGATION STRIP -->
+      <aside class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end gap-2 pointer-events-auto" id="scene-nav">
+        <div class="bg-surface-container-lowest/95 backdrop-blur-md px-3.5 py-3.5 border border-outline-variant/40 shadow-[0_16px_40px_-8px_rgba(40,40,40,0.12)] flex flex-col gap-1.5 transition-all duration-300 rounded-lg">
+          <div class="flex items-center justify-between pb-2 mb-1 border-b border-outline-variant/30">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-bold">Scenes</span>
+            <button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-[0.15em] ml-3" id="skip-nav-btn">Skip ↓</button>
+          </div>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-01" title="Scene 01: Arrival">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">01 Arrival</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-02" title="Scene 02: Space Immersion">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">02 Space</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-03" title="Scene 03: Projects Archive">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">03 Projects</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-04" title="Scene 04: Tile Engineering">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">04 Tiles</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-05" title="Scene 05: Veining Showcase">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">05 Veining</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-06" title="Scene 06: Transformation Reveal">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">06 Reveal</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-07" title="Scene 07: Pillars">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">07 Pillars</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-08" title="Scene 08: 5-Step Process">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">08 Process</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+          <button class="scene-dot flex items-center gap-2 group w-full text-right justify-end py-1 transition-all" data-target="scene-09" title="Scene 09: Collaboration">
+            <span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary group-hover:translate-x-0 translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 whitespace-nowrap">09 Build</span>
+            <span class="w-2 h-2 rounded-full bg-outline-variant group-hover:bg-primary transition-all duration-300 dot-indicator"></span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- =====================================================================
+           SCENE 01: ARRIVAL (CINEMATIC CAMERA PUSH-IN)
+           ===================================================================== -->
+      <section class="relative w-full min-h-[942px] flex items-center justify-center overflow-hidden bg-surface-container-low px-margin-mobile md:px-margin-tablet lg:px-margin py-space-2xl hero-scene-container" id="scene-01">
+        <div class="absolute inset-0 z-0 opacity-25 mix-blend-multiply bg-cover bg-center hero-bg-anim hero-bg-media" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCB8We_FivZdnHCfwcGdI3NPKmiG1Pd5xueZ4ZPCaZa9mB2BN2QiZ1AoTnsYpAKEXG9WX_vDgmpwXITVJOVFkmBSXaNV8BO6IL7sPnXQh6GCYHtk9rETBM6ch3o9dpPs84oCa_4uYQkonFeo45G4-h8fwqZQ26DnGxY5xQuBiRt5g5Xt0mrFzfa1I-w-wHmS5W0M0i4nl7LcPevpx2YhfzQ1kzwHE7Sx6tX4opQxqqrXcdEUKr1WFuz');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent z-0"></div>
+
+        <div class="relative z-10 max-w-[1200px] w-full mx-auto flex flex-col items-center text-center hero-text-group">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-surface-container-lowest/95 backdrop-blur-md shadow-sm mb-space-lg border border-outline-variant/30 animate-hero-1">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant font-medium">Master Civil Contracting • Sukher, Udaipur</span>
+          </div>
+          <h1 class="font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface max-w-4xl tracking-tight mb-space-md animate-hero-2">
+            Spaces Crafted with Precision.
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-space-xl animate-hero-3">
+            Tiles, Granite, Marble and Interior Finishing — executing uncompromising stone engineering and luxury residential architectural craftsmanship.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-hero-4">
+            <a class="w-full sm:w-auto px-8 py-3.5 bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 text-center btn-shine-wrap relative border border-transparent hover:border-primary-container" href="#scene-03">
+              Explore Our Work
+            </a>
+            <a class="w-full sm:w-auto px-8 py-3.5 bg-surface-container-lowest text-on-surface font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-surface-container-high transition-all duration-300 shadow-sm hover:shadow hover:-translate-y-0.5 text-center border border-outline-variant/30" href="#quote-section">
+              Discuss Your Project
+            </a>
+          </div>
+
+          <!-- Proof Stat Banner -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter w-full max-w-4xl mt-space-2xl pt-space-lg animate-hero-5">
+            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+              <span class="font-headline-md text-headline-md text-primary block group-hover:scale-105 origin-left transition-transform duration-300">28+</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Years Legacy</span>
+            </div>
+            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+              <span class="font-headline-md text-headline-md text-on-surface block group-hover:scale-105 origin-left transition-transform duration-300">450+</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Estates Completed</span>
+            </div>
+            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+              <span class="font-headline-md text-headline-md text-primary block group-hover:scale-105 origin-left transition-transform duration-300">100%</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Dry Joinery Tolerance</span>
+            </div>
+            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
+              <span class="font-headline-md text-headline-md text-on-surface block group-hover:scale-105 origin-left transition-transform duration-300">Zero</span>
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Hollow Sound</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 02: SPATIAL IMMERSION (EXTERIOR TO INTERIOR TRANSITION)
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface-container-high py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin relative overflow-hidden" id="scene-02">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+            <div class="lg:col-span-5 space-y-space-md">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Scene 02 • Spatial Immersion</span>
+              <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
+                Every Surface Tells a Story.
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                True architectural civil execution does not simply lay material. We calibrate sub-base levels, inspect geological vein orientations in quarry blocks, and seal microscopic pores for generations of pristine endurance.
+              </p>
+              <div class="p-space-md bg-surface-container-lowest shadow-sm space-y-2 border-l-2 border-primary hover:border-primary-container transition-colors duration-200">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[20px]">architecture</span>
+                  <span class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-[0.12em]">Sub-Millimeter Leveling</span>
+                </div>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Laser calibrated water-lines across expansive 10,000+ sq ft floorings ensuring seamless gradient drainage and mirror-flat joint reflections.
+                </p>
+              </div>
+            </div>
+            <div class="lg:col-span-7 relative group scene-02-viewport">
+              <div class="aspect-[16/10] bg-surface-container w-full overflow-hidden shadow-lg relative cursor-crosshair scene-02-media-wrap">
+                <img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" alt="Villa Alankrit Interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy5mq_TNs6iljGDtTApfeDxPVhQxeiwRCM4AnwsKaLSPa8YsCij0LC83ijDgYdybWxom1vU0TDLFJtioOCTZdRR_UfLqP0Hgnx_DfoYCrSey78r3jh7llNHPn8CvcKC5tEGdrD7Dk7Ik9iUjcvker3Ozxc8c_rXR4gL4WpOjmL-0mYeQSAYTup57PDO74T_tXMnJaz5cTEZ3uTnAvsGOQzBk7Dc3bGZyppstiIZUHV_rmFwHeoJwgz" />
+                <div class="absolute bottom-4 left-4 bg-surface-container-lowest/95 backdrop-blur-md px-4 py-2.5 shadow-md border border-outline-variant/30 transition-transform duration-300 group-hover:-translate-y-1">
+                  <span class="font-label-sm text-label-sm text-on-surface uppercase tracking-[0.15em] block font-semibold">Villa Alankrit • Sukher Foothills</span>
+                  <span class="font-body-sm text-body-sm text-primary">Bookmatched Carrara & Black Pearl Granite</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 03: 3D PERSPECTIVE COVERFLOW PROJECT CAROUSEL (REFERENCE DESIGN)
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin relative" id="scene-03">
+        <div class="max-w-[1440px] mx-auto">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-4">
+            <div>
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1">Scene 03 • 3D Portfolio Deck</span>
+              <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Signature Project Works.</h2>
+            </div>
+            
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap items-center gap-2" id="portfolio-filters">
+              <button class="px-3.5 py-1.5 bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all shadow-sm rounded-none border border-transparent font-medium" data-cat="all">All Works</button>
+              <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="marble">Marble</button>
+              <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="granite">Granite</button>
+              <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="tiles">Tiles</button>
+              <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="civil">Civil Work</button>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Coverflow Stage -->
+          <div class="coverflow-stage" id="coverflow-stage">
+            <button class="coverflow-nav-btn prev" id="carousel-prev" aria-label="Previous Project">
+              <span class="material-symbols-outlined text-[24px]">west</span>
+            </button>
+            
+            <div class="coverflow-track" id="carousel-track">
+              <!-- Cards rendered dynamically by coverflow3d.js with 3D depth and rotation -->
+            </div>
+
+            <button class="coverflow-nav-btn next" id="carousel-next" aria-label="Next Project">
+              <span class="material-symbols-outlined text-[24px]">east</span>
+            </button>
+          </div>
+
+          <div class="flex items-center justify-center gap-3 text-on-surface-variant mt-2 text-center">
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-primary">3d_rotation</span> Click card or arrows to navigate • Click active card to inspect high-res specs
+            </span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 04: TILES & FLOORING CRAFTSMANSHIP
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface-container-low py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin" id="scene-04">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+          <div class="lg:col-span-6 order-2 lg:order-1">
+            <div class="relative bg-surface-container-lowest p-space-md shadow-lg border border-outline-variant/20 group">
+              <div class="aspect-[4/3] bg-surface-container overflow-hidden relative">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Laser Alignment Tile Installation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe-9z-FS6QfMEy5LKTo9EieTeHGQpsTmEmofuf9vQ-m-Y3r_zwRlgs72Gd1L9wgqDIbl67s06jrl5aYW8kRYEm3l5ZXZRDrYbGV5hDgbcvTb5TS_cI3Paj-6m0_PtcEyMo7dK3CrPGbghwG6dfhe4gGgr4W4cSJjEvmN8gzyMXrM49KzcpFyxQnUbrOz7ZA-8rRDpzc7_RmXEJURxEVme2neof6VoQ4YfdDdc1q_0_yX35nF-hjI8a" />
+              </div>
+              <div class="mt-space-md grid grid-cols-3 gap-2 text-center">
+                <div class="p-2.5 bg-surface hover:bg-surface-container transition-colors duration-200">
+                  <span class="font-headline-sm text-headline-sm text-primary block">1.0mm</span>
+                  <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Min Joint Spec</span>
+                </div>
+                <div class="p-2.5 bg-surface hover:bg-surface-container transition-colors duration-200">
+                  <span class="font-headline-sm text-headline-sm text-on-surface block">100%</span>
+                  <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Bed Mortar Spread</span>
+                </div>
+                <div class="p-2.5 bg-surface hover:bg-surface-container transition-colors duration-200">
+                  <span class="font-headline-sm text-headline-sm text-primary block">0-Lippage</span>
+                  <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Laser Gauge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 space-y-space-md order-1 lg:order-2">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Scene 04 • Tile Engineering</span>
+            <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
+              Precision in Every Tile.
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              Careful alignment, clean finishes and attention to every detail. LBK sets the benchmark for monumental vitreous and porcelain installations.
+            </p>
+            <div class="space-y-space-sm pt-space-xs">
+              <div class="flex items-start gap-3 p-space-sm bg-surface-container-lowest shadow-sm border border-transparent hover:border-primary/30 transition-all duration-200 hover:-translate-x-1">
+                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">straighten</span>
+                <div>
+                  <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold">Rectified Joint Symmetry</h4>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Every tile grid line is surveyed and plotted using optical laser benchmarks before adhesive bed spread.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-space-sm bg-surface-container-lowest shadow-sm border border-transparent hover:border-primary/30 transition-all duration-200 hover:-translate-x-1">
+                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">water_drop</span>
+                <div>
+                  <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold">Epoxy Polymer Grouting</h4>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Dual-component epoxy matrices that will never discolour, mildew, stain or leech calcium salts over time.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 05: GRANITE & MARBLE VEINING WITH THREE.JS 3D SLAB VIEWER
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin" id="scene-05">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="max-w-3xl mb-space-lg">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1 font-semibold">Scene 05 • Geologic Texture & 3D Simulation</span>
+            <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Natural Beauty. Lasting Finish.</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+              Experience the tactile contrast of igneous crystalline granite vs metamorphic calcareous marble. Orbit the real-time 3D slab below to observe diamond crystallization and light reflections.
+            </p>
+          </div>
+
+          <!-- Material Switcher Controls -->
+          <div class="flex items-center gap-3 mb-space-md">
+            <button class="px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.12em] shadow-sm transition-all duration-200 active:scale-95 font-medium" id="btn-show-marble">
+              Natural Marble Slabs
+            </button>
+            <button class="px-6 py-2.5 bg-surface-container-high text-on-surface-variant font-label-md text-label-md uppercase tracking-[0.12em] shadow-sm hover:bg-surface-container-highest transition-all duration-200 active:scale-95 font-medium" id="btn-show-granite">
+              High-Density Granite
+            </button>
+          </div>
+
+          <!-- Dynamic 3D Slab + Specs Grid -->
+          <div class="bg-surface-container-lowest p-space-lg shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center border border-outline-variant/30" id="material-display">
+            
+            <!-- Three.js 3D Slab Viewport -->
+            <div class="lg:col-span-7">
+              <div class="stone-3d-canvas-wrap" id="stone-3d-viewport">
+                <!-- Three.js Canvas injected here -->
+                <div class="stone-3d-overlay-hint">
+                  <span class="material-symbols-outlined text-[14px]">touch_app</span> Drag to Rotate in 3D
+                </div>
+              </div>
+            </div>
+
+            <!-- Specifications Spec Column -->
+            <div class="lg:col-span-5 space-y-space-md transition-opacity duration-300" id="mat-text-container">
+              <div>
+                <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.15em] block" id="mat-origin">Mineral Category • Metamorphic Limestone</span>
+                <h3 class="font-headline-lg text-headline-lg text-on-surface mt-1" id="mat-title">Bespoke Italian & Makrana Marble</h3>
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed" id="mat-desc">
+                Celebrated for its organic flowing veining and translucent depth of clarity. Ideal for grand staircases, private palatial living halls, wall claddings, and artisanal carved accents.
+              </p>
+              <div class="space-y-2 bg-surface p-space-md border border-outline-variant/20">
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/10">
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Standard Thickness</span>
+                  <span class="font-body-sm text-body-sm text-on-surface font-semibold" id="mat-thick">18mm • 20mm Custom</span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-outline-variant/10">
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Recommended Polish</span>
+                  <span class="font-body-sm text-body-sm text-on-surface font-semibold" id="mat-polish">High Gloss Mirror / Silky Honed</span>
+                </div>
+                <div class="flex justify-between items-center py-1">
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Slip Resistance Rating</span>
+                  <span class="font-body-sm text-body-sm text-on-surface font-semibold" id="mat-slip">R9 (Polished) / R11 (Honed)</span>
+                </div>
+              </div>
+              <a class="inline-flex items-center gap-2 font-label-md text-label-md uppercase tracking-[0.12em] text-primary hover:text-on-surface transition-colors font-semibold group/link" href="#quote-section">
+                Order Stone Sample Swatch <span class="material-symbols-outlined text-[16px] group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 06: INTERIOR BEFORE & AFTER SLIDER
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface-container-high py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin" id="scene-06">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="text-center max-w-3xl mx-auto mb-space-xl">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1 font-semibold">Scene 06 • Transformation Reveal</span>
+            <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Craftsmanship You Can See.</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              Drag the interactive divider to witness the shift from raw masonry structure to flawless, completed luxury stone finishes.
+            </p>
+          </div>
+
+          <!-- Draggable Container -->
+          <div class="relative w-full max-w-5xl mx-auto aspect-[16/9] overflow-hidden select-none shadow-2xl bg-surface-container border border-outline-variant/40" id="ba-slider-container">
+            <!-- After Image -->
+            <img class="absolute inset-0 w-full h-full object-cover" alt="Completed Palace Room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtKRUVnnSr9JTkBe3YcqOaVn37BBJwZVTKXW5w6cC09yB27wHl3tAG_BhR8MRKqyuz0nezYW9yMkVaorAvwmmOjhOBmP8H3vftIEwL7RibJLhbt908Y-_xLLrmDlNWWA5lFLwJ3V9-sFp1kGDx-VbKLNeEe2j6RXFMoPyWPs1V6wiRUVs_Xi8sI2I723b8giQUt6J5XRRSALgZwPlcmVcD82lfG71hTHOcmc9spvBJjMJ40z0Jfzs2" />
+            <div class="absolute top-4 right-4 bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface px-3 py-1 font-label-sm text-label-sm uppercase tracking-[0.15em] z-10 pointer-events-none">
+              Finished Result
+            </div>
+
+            <!-- Before Image (Clipped) -->
+            <div class="absolute inset-0 w-1/2 overflow-hidden pointer-events-none" id="ba-before-wrap">
+              <img class="absolute inset-0 w-[1000px] md:w-[1280px] max-w-none h-full object-cover" alt="Under Construction Site" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLHAiMi-bYAgB7xnl3mKO7-Qt5JSsbr-UkrH5AAb0odJ-Ga4tApwyvz5dn3TluhNSVshS-pG2y9OfLnONVHbUt89GyGqU9OP1b3RzcOnJSxkfA9-kYKHvxUv1Sxle22_IoMj-32VnxVzIeiZoTn79iVI9HYCo-OPIhiWLr84-IvkiMF1wEhkEFhmhy8faiGDbgIqBg8SpLFdpIPBGUumRTI9GKiFFtYuYWBUUJYpAXEGTGTzXZBh5o" />
+              <div class="absolute top-4 left-4 bg-inverse-surface/85 backdrop-blur-sm text-inverse-on-surface px-3 py-1 font-label-sm text-label-sm uppercase tracking-[0.15em] z-10">
+                Raw Masonry Phase
+              </div>
+            </div>
+
+            <!-- Draggable Handle Bar -->
+            <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 bg-surface-container-lowest cursor-ew-resize flex items-center justify-center shadow-[0_0_12px_rgba(0,0,0,0.3)] pointer-events-auto" id="ba-handle">
+              <div class="w-9 h-9 rounded-full bg-surface-container-lowest shadow-lg flex items-center justify-center text-primary border border-outline-variant/40 transition-transform hover:scale-110 active:scale-95">
+                <span class="material-symbols-outlined text-[20px]">drag_indicator</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center gap-4 mt-space-md text-on-surface-variant">
+            <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">touch_app</span> Click & Drag Slider Left & Right to Compare
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 07: FOUNDATIONAL PHILOSOPHY (3D TILT PILLARS)
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin" id="scene-07">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="max-w-2xl mb-space-xl">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1 font-semibold">Scene 07 • Foundational Philosophy</span>
+            <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Built on Four Uncompromising Pillars.</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            
+            <!-- Pillar 1 -->
+            <div class="pillar-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-surface flex items-center justify-center text-primary mb-space-md border border-outline-variant/20">
+                  <span class="material-symbols-outlined text-[26px] pillar-icon">verified</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-bold block mb-1">Pillar 01</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Quality</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Direct quarry batch selection to guarantee uniform tone, grain integrity, and minimal porosity before delivery to site.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="pillar-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-surface flex items-center justify-center text-primary mb-space-md border border-outline-variant/20">
+                  <span class="material-symbols-outlined text-[26px] pillar-icon">square_foot</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-bold block mb-1">Pillar 02</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Precision</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Computerized bridge cutting and micrometer calibration ensures true 90-degree edges and perfect diagonal alignment.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="pillar-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-surface flex items-center justify-center text-primary mb-space-md border border-outline-variant/20">
+                  <span class="material-symbols-outlined text-[26px] pillar-icon">handyman</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-bold block mb-1">Pillar 03</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Craftsmanship</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Generations of Kumawat family masonry heritage, fusing traditional Indian stonemason wisdom with contemporary dry joinery.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="pillar-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 bg-surface flex items-center justify-center text-primary mb-space-md border border-outline-variant/20">
+                  <span class="material-symbols-outlined text-[26px] pillar-icon">schedule</span>
+                </div>
+                <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-bold block mb-1">Pillar 04</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Reliability</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                  Clear contractual milestones, daily photographic progression logs, and firm handover schedules without excuses.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 08: 5-STEP REFINED PROCESS TIMELINE WITH ANIMATED LINE
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface-container-low py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin relative" id="scene-08">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-space-2xl">
+            <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1 font-semibold">Scene 08 • Systematic Execution</span>
+            <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Our Refined 5-Step Process</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              From initial blueprint reading to final diamond luster, each stage is engineered for structural longevity.
+            </p>
+          </div>
+
+          <!-- Stepper Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-gutter relative">
+            <!-- Step 1 -->
+            <div class="process-card bg-surface-container-lowest p-space-md shadow-sm border border-outline-variant/20 flex flex-col justify-between h-full group">
+              <div>
+                <div class="w-8 h-8 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center mb-space-sm font-bold group-hover:scale-110 transition-transform">01</div>
+                <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold mb-2">Discuss Requirements</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Direct consultation with contractor Lalchand Kumawat to outline design ambitions and budget targets.</p>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary tracking-[0.15em] uppercase block mt-space-md font-semibold">Stage 1: Briefing</span>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-card bg-surface-container-lowest p-space-md shadow-sm border border-outline-variant/20 flex flex-col justify-between h-full group">
+              <div>
+                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center mb-space-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">02</div>
+                <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold mb-2">Understand the Project</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">On-site laser survey, sub-base structural testing, moisture evaluation, and CAD blueprint review.</p>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary tracking-[0.15em] uppercase block mt-space-md font-semibold">Stage 2: Survey</span>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-card bg-surface-container-lowest p-space-md shadow-sm border border-outline-variant/20 flex flex-col justify-between h-full group">
+              <div>
+                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center mb-space-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">03</div>
+                <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold mb-2">Plan the Work</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Material batch selection at the yard, cutting schedule formulation, and logistics timeline signoff.</p>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary tracking-[0.15em] uppercase block mt-space-md font-semibold">Stage 3: Strategy</span>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-card bg-surface-container-lowest p-space-md shadow-sm border border-outline-variant/20 flex flex-col justify-between h-full group">
+              <div>
+                <div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center justify-center mb-space-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">04</div>
+                <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold mb-2">Execute with Care</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Dry laying, vein sequence mapping, adhesive bedding, vibration leveling, and seamless grouting.</p>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary tracking-[0.15em] uppercase block mt-space-md font-semibold">Stage 4: Craft</span>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="process-card bg-surface-container-lowest p-space-md shadow-sm border border-outline-variant/20 flex flex-col justify-between h-full group">
+              <div>
+                <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center justify-center mb-space-sm font-bold group-hover:scale-110 transition-transform">05</div>
+                <h4 class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold mb-2">Final Finishing</h4>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Multi-grit crystallization polish, fluoropolymer stain repellent sealing, and joint inspection signoff.</p>
+              </div>
+              <span class="font-label-sm text-label-sm text-primary tracking-[0.15em] uppercase block mt-space-md font-semibold">Stage 5: Handover</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SCENE 09: LET'S BUILD TOGETHER
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin relative" id="scene-09">
+        <div class="max-w-[1440px] mx-auto bg-surface-container-lowest p-space-xl md:p-space-2xl shadow-xl border border-outline-variant/30">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+            <div class="lg:col-span-8 space-y-space-md">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Scene 09 • Collaborative Permanence</span>
+              <h2 class="font-display-hero text-headline-xl-mobile md:text-headline-xl lg:text-display-hero text-on-surface tracking-tight">
+                Let's Create Something Exceptional.
+              </h2>
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                Have a residential villa, commercial corporate tower, or luxury hospitality project in mind? Lalchand Banshidhar Kumawat brings decades of mastery to your blueprint.
+              </p>
+              <div class="flex flex-wrap gap-4 pt-space-sm">
+                <a class="px-8 py-3.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary-fixed-dim transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 btn-shine-wrap font-medium" href="#quote-section">
+                  Get a Formal Quote
+                </a>
+                <a class="px-8 py-3.5 bg-surface text-on-surface font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-surface-container-high transition-all shadow-sm hover:shadow hover:-translate-y-0.5 flex items-center gap-2 border border-outline-variant/30" href="tel:+919876543210">
+                  <span class="material-symbols-outlined text-[18px]">call</span> +91 98765 43210
+                </a>
+              </div>
+            </div>
+            <div class="lg:col-span-4 bg-surface-container-low p-space-lg shadow-inner space-y-4 border border-outline-variant/20">
+              <span class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold block">Stone Yard Availability</span>
+              <div class="flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-green-600 animate-pulse"></span>
+                <span class="font-body-sm text-body-sm text-on-surface font-medium">Makrana White Slabs: In Stock</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-green-600 animate-pulse"></span>
+                <span class="font-body-sm text-body-sm text-on-surface font-medium">Rajasthan Black Granite: Ready</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-3 h-3 rounded-full bg-green-600 animate-pulse"></span>
+                <span class="font-body-sm text-body-sm text-on-surface font-medium">Imported Italian Marble: Inspected</span>
+              </div>
+              <div class="pt-2 border-t border-outline-variant/20">
+                <p class="font-body-sm text-body-sm text-on-surface-variant">Live physical inspections available at Sukher Industrial Yard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           DIRECT SERVICES MATRIX SECTION
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface-container-low py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-4">
+            <div>
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] block mb-1 font-semibold">Contracting Capabilities</span>
+              <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">Civil & Stone Services Matrix</h2>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+              End-to-end management from structural reinforced civil masonry to high-end interior stone finishing and water jet inlays.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            
+            <!-- Service 1 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 01</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">layers</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Marble Inlay & Floor Polishing</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  Specialized bookmatched installations, waterjet brass and colored stone medallions, multi-stage diamond crystallization and mirror finishing.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 02</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">view_quilt</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Granite Cladding & Countertops</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  Dry and wet fixing of high-wind load granite facades, heavy-duty stair treads with bullnosing, and one-piece luxury kitchen islands.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 03</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">grid_view</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Architectural Tiles & Slabs</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  Laying ultra-slim 3mm to 12mm full-body porcelain slabs up to 3.2 meters long with zero hollow voids and calibrated adhesive buttering.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 04</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">foundation</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Turnkey Civil Construction</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  RCC framed structures, stone foundation masonry, perimeter retaining walls, concrete leveling screeds, and parapet waterproofing.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 05</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">format_paint</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Luxury Interior Finishing</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  Plaster of Paris cornices, lime wash texture coats, waterproof bathroom tanking, Italian microtopping, and niche architectural molding.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card bg-surface-container-lowest p-space-lg shadow-sm border border-outline-variant/30 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-space-md">
+                  <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Division 06</span>
+                  <span class="material-symbols-outlined text-primary text-[24px]">home_repair_service</span>
+                </div>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Restoration & Re-Polishing</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md leading-relaxed">
+                  Deep restoration of aged heritage marble, chemical stain removal, resin seam injection, lippage grinding, and protective sealant application.
+                </p>
+              </div>
+              <a class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary hover:underline inline-flex items-center gap-1 font-semibold" href="#quote-section">Request Service Estimate <span class="service-arrow">→</span></a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           CLIENT CONSULTATION & DIRECT QUOTE FORM SECTION
+           ===================================================================== -->
+      <section class="reveal-section w-full bg-surface py-space-2xl px-margin-mobile md:px-margin-tablet lg:px-margin" id="quote-section">
+        <div class="max-w-[1440px] mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            
+            <!-- Left: Direct Phone Desk & Yard Address -->
+            <div class="lg:col-span-5 space-y-space-md">
+              <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.15em] font-semibold">Direct Architectural Inquiry</span>
+              <h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
+                Discuss Your Civil & Stonework Blueprint.
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Send us your carpet area, tentative stone specifications, or upload structural drawings. Our principal surveyor reviews all submissions within 24 working hours.
+              </p>
+              <div class="space-y-space-sm pt-space-xs">
+                <div class="p-space-md bg-surface-container-lowest shadow-sm border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.15em] block mb-1">Direct Phone Desk</span>
+                  <span class="font-body-md text-body-md text-on-surface font-semibold block">+91 98765 43210 / +91 98765 43211</span>
+                  <span class="font-body-sm text-body-sm text-on-surface-variant">Available Monday – Saturday, 09:00 – 19:00 IST</span>
+                </div>
+                <div class="p-space-md bg-surface-container-lowest shadow-sm border border-outline-variant/30 hover:border-primary/40 transition-colors">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.15em] block mb-1">Sukher Stone Yard Address</span>
+                  <p class="font-body-sm text-body-sm text-on-surface font-medium">Plot 42, Marble Industrial Complex, Sukher, Udaipur, Rajasthan 313001</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Consultation Form -->
+            <div class="lg:col-span-7 bg-surface-container-lowest p-space-lg md:p-space-xl shadow-lg border border-outline-variant/30">
+              <form class="space-y-space-md" id="consultation-form">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="form-group">
+                    <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Full Name *</label>
+                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="e.g. Vikramaditya Rathore" required type="text" />
+                  </div>
+                  <div class="form-group">
+                    <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Phone Number *</label>
+                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="+91 98765 00000" required type="tel" />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+                  <div class="form-group">
+                    <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Email Address</label>
+                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="name@architects.com" type="email" />
+                  </div>
+                  <div class="form-group">
+                    <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Project Site Location *</label>
+                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="e.g. Udaipur, Jaipur, or Delhi NCR" required type="text" />
+                  </div>
+                </div>
+
+                <!-- Material Scope Checkboxes -->
+                <div>
+                  <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2">Primary Work Scope</label>
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Italian Marble</span>
+                    </label>
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Granite Cladding</span>
+                    </label>
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Porcelain Tiles</span>
+                    </label>
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Civil Masonry</span>
+                    </label>
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Interior Finishing</span>
+                    </label>
+                    <label class="flex items-center gap-2.5 p-2.5 bg-surface-container-low cursor-pointer hover:bg-surface-container transition-all border border-transparent hover:border-primary/30">
+                      <input class="w-4 h-4 accent-primary transition-transform cursor-pointer" type="checkbox" />
+                      <span class="font-body-sm text-body-sm text-on-surface font-medium select-none">Re-Polishing</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Dimensions & Notes -->
+                <div class="form-group">
+                  <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Project Dimensions & Specific Details</label>
+                  <textarea class="w-full bg-surface-container-low p-4 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="Mention approximate carpet area in sq ft, preferred stone grades (e.g., Makrana, Statuario, Black Galaxy), timeline constraints, and whether drawings are ready." rows="4"></textarea>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                  <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-primary">lock</span> Confidential Blueprint Review Guaranteed.
+                  </span>
+                  <button class="w-full sm:w-auto px-8 py-3.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary-fixed-dim transition-all shadow-md hover:shadow-lg active:scale-95 btn-shine-wrap font-medium flex items-center justify-center gap-2" id="submit-btn" type="submit">
+                    <span id="submit-text">Submit Consultation Request</span>
+                    <span class="material-symbols-outlined text-[18px] hidden animate-spin" id="submit-spinner">progress_activity</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =====================================================================
+       EDITORIAL LUXURY FOOTER
+       ===================================================================== -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.03)] border-t border-outline-variant/30">
+    <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin py-space-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+        
+        <div class="lg:col-span-4 flex flex-col justify-between pr-0 lg:pr-space-lg">
+          <div class="space-y-space-md">
+            <div class="flex items-center gap-space-sm">
+              <img alt="LBK Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XnuyDCru4PikoO1AyRjIx4WvgGV5oZa7VaBZ1pcXh3pyWkghelXorv72wG058If5OiJ8fcyt-XQK8_--djSbAZRGRiyCufrW_vjp4K7f_qvdVDmUR3DP6B5dvECUDqTe-AMdBGGQttP3sUiIJuiHMBvIH056TWzJ9N4Zh4UWTQNewz2L3XYNWbuPoyqxIjp8bTKY9VB_Lystt8n2fYTb0d62Sm6Gcpi8mCv440UHyoawB7MPaSM1JpKh0" />
+              <span class="font-headline-sm text-headline-sm text-on-surface">LBK Contractor</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+              Lalchand Banshidhar Kumawat — Delivering structural permanence, artisanal stonework, Italian marble precision, and luxury bespoke civil craftsmanship.
+            </p>
+          </div>
+          <div class="mt-space-lg pt-space-md flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 bg-surface font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Tiles</span>
+            <span class="px-2.5 py-1 bg-surface font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Granite</span>
+            <span class="px-2.5 py-1 bg-surface font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Marbles</span>
+            <span class="px-2.5 py-1 bg-surface font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Interior Finishing</span>
+            <span class="px-2.5 py-1 bg-surface font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Civil Construction</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 flex flex-col space-y-space-md">
+          <span class="font-label-md text-label-md uppercase tracking-[0.12em] text-primary font-semibold">Structural Divisions</span>
+          <nav class="flex flex-col space-y-2">
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#scene-04">Marble Inlay & Polishing</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#scene-04">Granite Precision Cladding</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#scene-04">Architectural Tile Layouts</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#scene-02">Luxury Residential Interior</a>
+            <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors duration-150" href="#scene-07">Commercial Structural Works</a>
+          </nav>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-space-lg">
+          <div class="space-y-space-md">
+            <span class="font-label-md text-label-md uppercase tracking-[0.12em] text-primary font-semibold">Direct Enquiries & Consultations</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-xs">
+              <div class="p-space-md bg-surface">
+                <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Phone Enquiries</span>
+                <span class="font-body-md text-body-md text-on-surface font-medium block">+91 98765 43210</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Mon – Sat, 9:00 – 19:00</span>
+              </div>
+              <div class="p-space-md bg-surface">
+                <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant block mb-1">WhatsApp Desk</span>
+                <span class="font-body-md text-body-md text-on-surface font-medium block">+91 98765 43211</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Instant Blueprint Review</span>
+              </div>
+            </div>
+            <div class="p-space-md bg-surface">
+              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant block mb-1">Main Works & Stone Yard</span>
+              <p class="font-body-sm text-body-sm text-on-surface">LBK Architectural Yard, Plot 42, Marble Industrial Complex, Sukher, Udaipur, Rajasthan 313001</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-space-md border-t border-outline-variant/10">
+            <span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 Lalchand Banshidhar Kumawat. All architectural rights reserved.</span>
+            <a class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant hover:text-primary transition-colors duration-150" href="#scene-01">
+              Top <span class="material-symbols-outlined text-[16px]">north</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Master JavaScript Entrypoint -->
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join('..', 'index.html'), htmlContent, 'utf8');
+console.log('index.html updated successfully with complete 3D scrollytelling structure!');

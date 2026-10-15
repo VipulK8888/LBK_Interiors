@@ -1,0 +1,538 @@
+/* ==========================================================================
+   LBK SURFACES & CIVIL CONTRACTOR - CINEMATIC SCROLLYTELLING & 3D CSS
+   ========================================================================== */
+
+:root {
+  --color-warm-ivory: #FAF9F6;
+  --color-white: #FFFFFF;
+  --color-gold: #C5A15B;
+  --color-gold-dark: #775A1B;
+  --color-gold-light: #E8C178;
+  --color-charcoal: #282828;
+  --color-secondary-text: #6B6B65;
+  --color-surface-container: #EFEEEB;
+  --color-surface-high: #E9E8E5;
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--color-warm-ivory);
+  color: var(--color-charcoal);
+  overflow-x: hidden;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* --------------------------------------------------------------------------
+   Scene 1: Architectural Arrival Scrollytelling
+   -------------------------------------------------------------------------- */
+.hero-scene-container {
+  perspective: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-bg-media {
+  will-change: transform, opacity;
+  transform-origin: center center;
+  transition: transform 0.1s linear;
+}
+
+.hero-text-group {
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 2: Spatial Immersion
+   -------------------------------------------------------------------------- */
+.scene-02-viewport {
+  perspective: 1200px;
+}
+
+.scene-02-media-wrap {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 3: 3D Coverflow Project Carousel (Matching Reference Image)
+   -------------------------------------------------------------------------- */
+.coverflow-stage {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  position: relative;
+  width: 100%;
+  min-height: 530px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 30px 0 50px 0;
+  user-select: none;
+}
+
+.coverflow-track {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  height: 470px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.coverflow-card {
+  position: absolute;
+  width: 350px;
+  height: 460px;
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 16px 36px -8px rgba(40, 40, 40, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(197, 161, 91, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transform-origin: center center;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.45s ease,
+              border-color 0.3s ease;
+  will-change: transform, opacity;
+  padding: 16px 16px 20px 16px;
+}
+
+/* Card Top Title / Header */
+.coverflow-card-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.coverflow-card-tag {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  display: block;
+}
+
+.coverflow-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card Image Frame */
+.coverflow-card-img-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--color-surface-container);
+}
+
+.coverflow-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coverflow-card:hover .coverflow-card-img {
+  transform: scale(1.06);
+}
+
+/* Card Bottom Action Pill */
+.coverflow-card-footer {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coverflow-action-pill {
+  padding: 8px 22px;
+  background-color: #1A1C1A;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.coverflow-card:hover .coverflow-action-pill {
+  background-color: var(--color-gold-dark);
+  transform: translateY(-2px);
+}
+
+/* 3D Transform States for Coverflow Items */
+.coverflow-card.is-active {
+  transform: translateX(0px) translateZ(80px) rotateY(0deg) scale(1.05);
+  opacity: 1;
+  z-index: 30;
+  box-shadow: 0 28px 50px -12px rgba(119, 90, 27, 0.22), 0 10px 20px rgba(0, 0, 0, 0.06);
+  border-color: rgba(197, 161, 91, 0.6);
+  pointer-events: auto;
+}
+
+.coverflow-card.is-prev-1 {
+  transform: translateX(-260px) translateZ(-110px) rotateY(26deg) scale(0.92);
+  opacity: 0.82;
+  z-index: 20;
+}
+
+.coverflow-card.is-next-1 {
+  transform: translateX(260px) translateZ(-110px) rotateY(-26deg) scale(0.92);
+  opacity: 0.82;
+  z-index: 20;
+}
+
+.coverflow-card.is-prev-2 {
+  transform: translateX(-470px) translateZ(-260px) rotateY(38deg) scale(0.82);
+  opacity: 0.48;
+  z-index: 10;
+}
+
+.coverflow-card.is-next-2 {
+  transform: translateX(470px) translateZ(-260px) rotateY(-38deg) scale(0.82);
+  opacity: 0.48;
+  z-index: 10;
+}
+
+.coverflow-card.is-hidden {
+  transform: translateX(0px) translateZ(-400px) scale(0.65);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Circular Arrow Navigation Controls */
+.coverflow-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 161, 91, 0.3);
+  box-shadow: 0 8px 24px rgba(40, 40, 40, 0.12);
+  color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 40;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coverflow-nav-btn:hover {
+  background-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 28px rgba(119, 90, 27, 0.25);
+}
+
+.coverflow-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.coverflow-nav-btn.prev {
+  left: 20px;
+}
+
+.coverflow-nav-btn.next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .coverflow-stage {
+    min-height: 480px;
+  }
+  .coverflow-card {
+    width: 280px;
+    height: 390px;
+  }
+  .coverflow-card.is-active {
+    transform: translateX(0px) translateZ(40px) rotateY(0deg) scale(1.02);
+  }
+  .coverflow-card.is-prev-1 {
+    transform: translateX(-150px) translateZ(-100px) rotateY(22deg) scale(0.85);
+  }
+  .coverflow-card.is-next-1 {
+    transform: translateX(150px) translateZ(-100px) rotateY(-22deg) scale(0.85);
+  }
+  .coverflow-card.is-prev-2,
+  .coverflow-card.is-next-2 {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .coverflow-nav-btn.prev {
+    left: 8px;
+  }
+  .coverflow-nav-btn.next {
+    right: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scene 5: Interactive 3D Stone Slab Viewer (Three.js WebGL)
+   -------------------------------------------------------------------------- */
+.stone-3d-canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: radial-gradient(circle at 50% 50%, #FAF8F3 0%, #EBE8E0 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.06), 0 20px 40px -12px rgba(40,40,40,0.12);
+  border: 1px solid rgba(197, 161, 91, 0.3);
+}
+
+.stone-3d-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  outline: none;
+  cursor: grab;
+}
+
+.stone-3d-canvas-wrap canvas:active {
+  cursor: grabbing;
+}
+
+.stone-3d-overlay-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(26, 28, 26, 0.85);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 7: 3D Mouse Tilt Pillar Cards
+   -------------------------------------------------------------------------- */
+.pillar-card-tilt {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s ease, 
+              border-color 0.3s ease;
+}
+
+.pillar-card-tilt:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 20px 36px -10px rgba(197, 161, 91, 0.22), 0 8px 16px rgba(0,0,0,0.04);
+}
+
+.pillar-card-inner {
+  transform: translateZ(24px);
+  transition: transform 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 8: Animated Process Timeline Line
+   -------------------------------------------------------------------------- */
+.process-svg-line-wrap {
+  position: absolute;
+  top: 36px;
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.process-line-bg {
+  stroke: rgba(209, 197, 180, 0.4);
+  stroke-width: 3;
+}
+
+.process-line-progress {
+  stroke: var(--color-gold);
+  stroke-width: 3;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.process-node-active {
+  box-shadow: 0 0 0 6px rgba(197, 161, 91, 0.28) !important;
+  background-color: var(--color-gold-dark) !important;
+  color: #FFFFFF !important;
+}
+
+/* --------------------------------------------------------------------------
+   Quick Project Inspection Modal (Clean Observation UI)
+   -------------------------------------------------------------------------- */
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(20, 20, 20, 0.75);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-dialog {
+  background-color: #FFFFFF;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  box-shadow: 0 32px 72px -16px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(197, 161, 91, 0.35);
+  transform: translateY(24px) scale(0.96);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.project-modal-backdrop.is-open .project-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(240, 238, 235, 0.9);
+  border: 1px solid rgba(197, 161, 91, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.project-modal-close:hover {
+  background-color: var(--color-gold);
+  color: #FFFFFF;
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   Laser Joint Guide Animation (Scene 04)
+   -------------------------------------------------------------------------- */
+.laser-guide-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(197, 161, 91, 0.95), #FFF, rgba(197, 161, 91, 0.95), transparent);
+  box-shadow: 0 0 12px 2px rgba(197, 161, 91, 0.7);
+  pointer-events: none;
+  z-index: 10;
+  animation: laserScan 4s ease-in-out infinite alternate;
+}
+
+@keyframes laserScan {
+  0% { top: 10%; opacity: 0.3; }
+  50% { opacity: 0.95; }
+  100% { top: 90%; opacity: 0.3; }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, ::after, ::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .laser-guide-line { display: none; }
+}
+
+/* Ensure sections are always 100% visible and interactive */
+.reveal-section {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+.stone-3d-canvas-wrap {
+  min-height: 400px;
+  height: 420px;
+  position: relative;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3D Circular Horizontal Carousel Enhancements
+   -------------------------------------------------------------------------- */
+.coverflow-stage {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.coverflow-stage:active {
+  cursor: grabbing;
+}
+
+.circular-3d-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.circular-3d-card.is-active {
+  cursor: pointer;
+}
+
+.coverflow-track {
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
