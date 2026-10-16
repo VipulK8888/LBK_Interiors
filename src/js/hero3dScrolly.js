@@ -1,9 +1,12 @@
 /**
- * LBK Surfaces - Master 3D Spatial Flythrough Scrollytelling Engine
- * Award-winning architectural WebGL experience built with Three.js & GSAP ScrollTrigger.
- * Pure 3D cinematic camera journey with live HUD telemetry, ZERO popup modals,
- * 6 architectural monoliths with climax centerpiece portal (NO empty space at end),
- * and dynamic mobile-first responsive geometry.
+ * LBK Surfaces - Master 3D Spatial Flythrough Scrollytelling Engine (Optimized HD Edition)
+ * Ultra-crisp architectural WebGL experience built with Three.js & GSAP ScrollTrigger.
+ * - Native 2x Retina resolution on mobile (zero bilinear blur)
+ * - Anisotropic texture filtering (8x) for razor-sharp marble & stone textures at angles
+ * - Linear fog with clear foreground (zero milky haze)
+ * - Jewel-faceted architectural beacon elevated to frame the corridor
+ * - 6 monumental architectural monoliths with climax centerpiece portal
+ * - 100% clean flight HUD telemetry with ZERO modal popups
  */
 
 import * as THREE from 'three';
@@ -59,7 +62,7 @@ export class Hero3DScrollytelling {
     }
 
     this.animate();
-    console.log('Hero3DScrollytelling: Pure 3D Flythrough online (6 monoliths, mobile-first, 0 modals).');
+    console.log('Hero3DScrollytelling: High-Definition 3D Corridor Online (Native Retina, Anisotropic HD).');
   }
 
   checkMobile() {
@@ -72,15 +75,19 @@ export class Hero3DScrollytelling {
     const height = this.container.clientHeight || window.innerHeight;
 
     this.scene = new THREE.Scene();
-    // Warm Ivory luxury fog seamlessly blending with the page background
+    
+    // Warm Ivory luxury backdrop
     this.scene.background = new THREE.Color(0xFAF9F6);
-    this.scene.fog = new THREE.FogExp2(0xFAF9F6, this.isMobile ? 0.00048 : 0.00055);
 
-    // Dynamic mobile FOV: wider FOV on portrait mobile screens ensures monoliths fit without clipping
-    const fov = this.isMobile ? 64 : 50;
-    this.camera = new THREE.PerspectiveCamera(fov, width / height, 1, 4800);
-    this.camera.position.set(0, 48, 750);
-    this.cameraTarget = new THREE.Vector3(0, 15, 0);
+    // Linear Fog: Near plane is 1400 units away so everything in the foreground & midground is 100% crisp & haze-free!
+    this.scene.fog = new THREE.Fog(0xFAF9F6, this.isMobile ? 1300 : 1600, this.isMobile ? 3800 : 4400);
+
+    // Dynamic FOV & Camera Start: Framed so the first architectural masterpiece is immediately prominent
+    const fov = this.isMobile ? 56 : 48;
+    this.camera = new THREE.PerspectiveCamera(fov, width / height, 1, 5000);
+    const startZ = this.isMobile ? 680 : 750;
+    this.camera.position.set(0, this.isMobile ? 44 : 48, startZ);
+    this.cameraTarget = new THREE.Vector3(0, 18, 0);
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -88,118 +95,126 @@ export class Hero3DScrollytelling {
       alpha: false
     });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2));
+
+    // Native High-DPI: Always use true device pixel ratio (capped at 2 for peak performance and zero blur)
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.renderer.setPixelRatio(dpr);
+
+    // Film-grade color management & tone mapping
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.08;
+    this.renderer.toneMappingExposure = 1.05;
+    if (THREE.SRGBColorSpace) {
+      this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    }
 
     this.container.innerHTML = '';
     this.container.appendChild(this.renderer.domElement);
   }
 
   setupLighting() {
-    // 1. Warm Ivory Ambient Light
-    const ambientLight = new THREE.AmbientLight(0xFFFBF4, 1.45);
+    // 1. Warm Ivory Ambient Light for natural daylight illumination
+    const ambientLight = new THREE.AmbientLight(0xFFFDF8, 1.35);
     this.scene.add(ambientLight);
 
-    // 2. Warm Key Studio Sun Light
-    const sunLight = new THREE.DirectionalLight(0xFFF8E7, 1.6);
-    sunLight.position.set(400, 650, 450);
+    // 2. High-clarity Key Studio Sun Light (gives crisp definition to edges)
+    const sunLight = new THREE.DirectionalLight(0xFFF9EE, 1.5);
+    sunLight.position.set(400, 700, 500);
     this.scene.add(sunLight);
 
     // 3. Champagne Gold Rim / Fill Light
-    const rimLight = new THREE.DirectionalLight(0xC5A15B, 0.95);
-    rimLight.position.set(-450, 300, -600);
+    const rimLight = new THREE.DirectionalLight(0xC5A15B, 0.9);
+    rimLight.position.set(-450, 320, -500);
     this.scene.add(rimLight);
 
     // 4. Moving Follow Spotlight for dynamic surface glints
-    const spotLight = new THREE.SpotLight(0xFFFFFF, 2.2, 1600, Math.PI / 4, 0.45, 1.2);
-    spotLight.position.set(0, 350, 800);
+    const spotLight = new THREE.SpotLight(0xFFFFFF, 2.0, 1800, Math.PI / 4, 0.45, 1.2);
+    spotLight.position.set(0, 360, 800);
     this.scene.add(spotLight);
     this.lights.spot = spotLight;
   }
 
   createReflectiveFloor() {
-    // Large Ground Plane extending beyond the entire corridor
+    // Ground plane extending across the pavilion
     const floorGeo = new THREE.PlaneGeometry(3600, 6000);
     const floorMat = new THREE.MeshStandardMaterial({
-      color: 0xF3EFEA,
-      roughness: 0.18,
-      metalness: 0.12
+      color: 0xF4EFE8,
+      roughness: 0.22,
+      metalness: 0.08
     });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -125;
     this.scene.add(floor);
 
-    // Champagne Gold Architectural Perspective Grid
-    const grid = new THREE.GridHelper(3600, 72, 0xC5A15B, 0xE0D7C9);
+    // Architectural Perspective Grid: Calibrated density avoids moiré blur
+    const divisions = this.isMobile ? 48 : 64;
+    const grid = new THREE.GridHelper(3600, divisions, 0xC5A15B, 0xE4DDD0);
     grid.position.y = -124.5;
-    grid.material.opacity = 0.55;
+    grid.material.opacity = 0.48;
     grid.material.transparent = true;
     this.scene.add(grid);
   }
 
   createFloatingMonoliths() {
     // 6 Master Architectural Monoliths with climax centerpiece portal at corridor terminus
-    // Eliminates all empty space towards the end of scrollytelling
     const projects = [
       {
         title: 'Villa Alankrit',
         category: 'Bookmatched Carrara & Black Pearl',
         specs: '12,000 sq ft • 0.0mm Lippage',
-        textureUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85',
+        textureUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=90',
         x: -240,
-        y: 45,
+        y: 44,
         z: 180,
-        rotY: 0.28,
-        rotX: -0.04,
+        rotY: 0.26,
+        rotX: -0.03,
         isCenterpiece: false
       },
       {
         title: 'The Mewar Penthouse',
         category: 'Italian Statuario & Flamed Granite',
         specs: '8,500 sq ft • Diamond Crystal Buff',
-        textureUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85',
-        x: 250,
-        y: 35,
+        textureUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90',
+        x: 245,
+        y: 36,
         z: -380,
-        rotY: -0.32,
-        rotX: 0.05,
+        rotY: -0.30,
+        rotX: 0.04,
         isCenterpiece: false
       },
       {
         title: 'Sovereign Villa Facade',
         category: 'Dry-Clad Rain Screen & Jodhpur Sandstone',
         specs: '16,000 sq ft • SS-316 Anchor Clamps',
-        textureUrl: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85',
-        x: -250,
-        y: 50,
+        textureUrl: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=90',
+        x: -245,
+        y: 48,
         z: -920,
-        rotY: 0.35,
-        rotX: -0.05,
+        rotY: 0.32,
+        rotX: -0.04,
         isCenterpiece: false
       },
       {
         title: 'Fatehsagar Lakefront Residence',
         category: 'Modernist Cantilever & Flamed Quartzite',
         specs: '14,200 sq ft • Precision Waterjet Slabs',
-        textureUrl: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1400&q=85',
-        x: 255,
+        textureUrl: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=90',
+        x: 250,
         y: 38,
         z: -1420,
-        rotY: -0.28,
-        rotX: 0.04,
+        rotY: -0.26,
+        rotX: 0.03,
         isCenterpiece: false
       },
       {
         title: 'Ambavgarh Hilltop Suite',
         category: 'Monolithic Terrazzo & Bookmatched Bath',
         specs: 'Curbless Walk-in Wet Room • Anti-Slip Honed',
-        textureUrl: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1400&q=85',
-        x: -245,
-        y: 45,
+        textureUrl: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=90',
+        x: -240,
+        y: 44,
         z: -1900,
-        rotY: 0.30,
+        rotY: 0.28,
         rotX: -0.03,
         isCenterpiece: false
       },
@@ -207,7 +222,7 @@ export class Hero3DScrollytelling {
         title: 'Royal Orchid Grand Centerpiece',
         category: 'Palatial Turnkey Execution & Pool Deck',
         specs: 'Monumental 24,000 sq ft Estate Climax',
-        textureUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=85',
+        textureUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=90',
         x: 0,
         y: 48,
         z: -2340,
@@ -218,43 +233,51 @@ export class Hero3DScrollytelling {
     ];
 
     const textureLoader = new THREE.TextureLoader();
+    const maxAnisotropy = this.renderer.capabilities.getMaxAnisotropy();
+    const targetAnisotropy = Math.min(maxAnisotropy, 8);
 
-    // Lateral scale on mobile: keep monoliths nicely framed on portrait phones
-    const lateralScale = this.isMobile ? 0.58 : 1.0;
+    // Lateral scale on mobile: keeps monoliths comfortably framed within portrait viewports
+    const lateralScale = this.isMobile ? 0.44 : 1.0;
 
     projects.forEach((proj, idx) => {
-      // Dimensions: centerpiece is slightly wider and grander
-      let slabW = proj.isCenterpiece ? (this.isMobile ? 220 : 280) : (this.isMobile ? 190 : 240);
-      let slabH = proj.isCenterpiece ? (this.isMobile ? 140 : 175) : (this.isMobile ? 120 : 150);
+      // Dimensions
+      let slabW = proj.isCenterpiece ? (this.isMobile ? 210 : 280) : (this.isMobile ? 165 : 240);
+      let slabH = proj.isCenterpiece ? (this.isMobile ? 140 : 175) : (this.isMobile ? 115 : 150);
       let slabD = proj.isCenterpiece ? 14 : 12;
 
       const slabGeom = new THREE.BoxGeometry(slabW, slabH, slabD);
       
       const texture = textureLoader.load(proj.textureUrl);
+      if (THREE.SRGBColorSpace) {
+        texture.colorSpace = THREE.SRGBColorSpace;
+      }
       texture.generateMipmaps = true;
       texture.minFilter = THREE.LinearMipmapLinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+      texture.anisotropy = targetAnisotropy;
 
-      const frontMat = new THREE.MeshPhongMaterial({
+      // Physically-based stone slab material with subtle micro-reflection (not shiny plastic)
+      const frontMat = new THREE.MeshStandardMaterial({
         map: texture,
-        shininess: 45,
-        specular: 0x555555
+        roughness: 0.28,
+        metalness: 0.08
       });
 
       // Beveled Brass Inlay Frame Edges
       const brassBorderMat = new THREE.MeshStandardMaterial({
         color: 0xC5A15B,
-        metalness: 0.85,
-        roughness: 0.25
+        metalness: 0.88,
+        roughness: 0.22
       });
 
-      // Double-sided luxury texture: NEVER pure black!
+      // Double-sided luxury texture: NEVER black
       const materials = [
         brassBorderMat, // right
         brassBorderMat, // left
         brassBorderMat, // top
         brassBorderMat, // bottom
         frontMat,       // front
-        frontMat        // back (double-sided luxury stone texture, NEVER black)
+        frontMat        // back
       ];
 
       const mesh = new THREE.Mesh(slabGeom, materials);
@@ -262,13 +285,13 @@ export class Hero3DScrollytelling {
       mesh.position.set(actualX, proj.y, proj.z);
       mesh.rotation.set(proj.rotX, proj.rotY, 0);
 
-      // Gold wireframe border highlight
+      // Gold wireframe border highlight for architectural framing
       const edges = new THREE.EdgesGeometry(slabGeom);
       const lineMat = new THREE.LineBasicMaterial({
         color: proj.isCenterpiece ? 0xE8C178 : 0xC5A15B,
-        linewidth: proj.isCenterpiece ? 3 : 2,
+        linewidth: 2,
         transparent: true,
-        opacity: proj.isCenterpiece ? 0.9 : 0.7
+        opacity: proj.isCenterpiece ? 0.95 : 0.8
       });
       const wireframe = new THREE.LineSegments(edges, lineMat);
       mesh.add(wireframe);
@@ -292,7 +315,7 @@ export class Hero3DScrollytelling {
       const shadowMat = new THREE.MeshBasicMaterial({
         color: 0x221E19,
         transparent: true,
-        opacity: 0.18,
+        opacity: 0.16,
         depthWrite: false
       });
       const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
@@ -319,37 +342,43 @@ export class Hero3DScrollytelling {
   }
 
   createCentralPrism() {
-    // 3D Geometric Faceted Architectural Glass Crystal (Entrance Landmark)
-    const prismGeom = new THREE.IcosahedronGeometry(this.isMobile ? 46 : 58, 1);
-    const prismMat = new THREE.MeshPhysicalMaterial({
-      color: 0xFFFFFF,
-      metalness: 0.1,
-      roughness: 0.12,
-      transmission: 0.88,
-      thickness: 2.2,
+    // Ultra-Crisp Polished Gold & Crystal Architectural Beacon (Suspended Pavilion Landmark)
+    // Elevated above camera line so it never obscures the first architectural monolith
+    const radius = this.isMobile ? 28 : 48;
+    const prismGeom = new THREE.IcosahedronGeometry(radius, 1);
+    
+    // Clear polished crystal glass (subtle, clean, NOT a milky blur)
+    const glassMat = new THREE.MeshStandardMaterial({
+      color: 0xFFFDF8,
+      metalness: 0.3,
+      roughness: 0.08,
       transparent: true,
-      opacity: 0.95,
-      reflectivity: 0.95
+      opacity: 0.28
     });
 
-    this.centralCrystal = new THREE.Mesh(prismGeom, prismMat);
-    this.centralCrystal.position.set(0, 110, 360);
+    this.centralCrystal = new THREE.Mesh(prismGeom, glassMat);
+    // Suspended high in pavilion ceiling at Y = 145 so corridor view is 100% unobstructed
+    this.centralCrystal.position.set(0, this.isMobile ? 162 : 155, 340);
 
-    // Inner glowing gold core
-    const coreGeom = new THREE.OctahedronGeometry(this.isMobile ? 18 : 24, 0);
+    // Inner glowing geometric core
+    const coreGeom = new THREE.OctahedronGeometry(this.isMobile ? 16 : 20, 0);
     const coreMat = new THREE.MeshStandardMaterial({
       color: 0xC5A15B,
-      emissive: 0x775A1B,
-      emissiveIntensity: 0.8,
-      metalness: 0.85,
-      roughness: 0.2
+      emissive: 0x93722A,
+      emissiveIntensity: 0.85,
+      metalness: 0.88,
+      roughness: 0.18
     });
     const core = new THREE.Mesh(coreGeom, coreMat);
     this.centralCrystal.add(core);
 
-    // Delicate gold lattice edge outline
+    // Razor-sharp gold lattice edges
     const edges = new THREE.EdgesGeometry(prismGeom);
-    const lineMat = new THREE.LineBasicMaterial({ color: 0xC5A15B, transparent: true, opacity: 0.8 });
+    const lineMat = new THREE.LineBasicMaterial({ 
+      color: 0xD4B26F, 
+      transparent: true, 
+      opacity: 0.92 
+    });
     const wireframe = new THREE.LineSegments(edges, lineMat);
     this.centralCrystal.add(wireframe);
 
@@ -357,8 +386,8 @@ export class Hero3DScrollytelling {
   }
 
   createAmbientDust() {
-    // Luminous 3D gold dust motes drifting in the pavilion
-    const count = this.isMobile ? 160 : 260;
+    // Crisp 3D gold dust motes drifting gently in pavilion atmosphere
+    const count = this.isMobile ? 140 : 240;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const scales = new Float32Array(count);
@@ -367,7 +396,7 @@ export class Hero3DScrollytelling {
       positions[i * 3 + 0] = (Math.random() - 0.5) * 1400;
       positions[i * 3 + 1] = -100 + Math.random() * 450;
       positions[i * 3 + 2] = 850 - Math.random() * 3500;
-      scales[i] = Math.random() * 4 + 2;
+      scales[i] = Math.random() * 3 + 1.5;
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -375,9 +404,9 @@ export class Hero3DScrollytelling {
 
     const material = new THREE.PointsMaterial({
       color: 0xC5A15B,
-      size: this.isMobile ? 3.5 : 4.5,
+      size: this.isMobile ? 2.5 : 3.5,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.75,
       blending: THREE.AdditiveBlending
     });
 
@@ -445,11 +474,11 @@ export class Hero3DScrollytelling {
     this.checkMobile();
 
     this.camera.aspect = width / height;
-    this.camera.fov = this.isMobile ? 64 : 50;
+    this.camera.fov = this.isMobile ? 56 : 48;
     this.camera.updateProjectionMatrix();
 
     // Dynamically adjust monolith horizontal offsets on mobile vs desktop
-    const lateralScale = this.isMobile ? 0.58 : 1.0;
+    const lateralScale = this.isMobile ? 0.44 : 1.0;
     this.monoliths.forEach(m => {
       m.mesh.position.x = m.baseX * lateralScale;
       if (m.shadowMesh) {
@@ -458,7 +487,9 @@ export class Hero3DScrollytelling {
     });
 
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.isMobile ? 1.5 : 2));
+    // True native 2x resolution on mobile & Retina screens
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.renderer.setPixelRatio(dpr);
   }
 
   initScrollTimeline() {
@@ -468,7 +499,7 @@ export class Hero3DScrollytelling {
       anticipatePin: 1,
       start: 'top top',
       end: 'bottom bottom',
-      scrub: 1.0, // Silky smooth inertia response
+      scrub: 1.0,
       onUpdate: (self) => {
         this.scrollProgress = self.progress;
 
@@ -481,7 +512,7 @@ export class Hero3DScrollytelling {
           this.hudProgress.style.width = `${(this.scrollProgress * 100).toFixed(0)}%`;
         }
 
-        // Zone updates across the spatial flythrough corridor (pure telemetry, NO popup modals)
+        // Zone updates across the spatial flythrough corridor
         if (this.scrollProgress < 0.33) {
           if (this.hudZone) this.hudZone.textContent = this.isMobile ? 'ZONE 01 • PAVILION' : 'ZONE 01 • ARCHITECTURAL PAVILION';
         } else if (this.scrollProgress >= 0.33 && this.scrollProgress < 0.72) {
@@ -504,16 +535,15 @@ export class Hero3DScrollytelling {
     this.pointer.y += (this.pointer.targetY - this.pointer.y) * 0.05;
 
     // 2. Camera S-Curve Flythrough Position
-    // Camera travels forward from Z = 750 down to Z = -2320
-    const startZ = 750;
+    const startZ = this.isMobile ? 680 : 750;
     const endZ = -2320;
     const targetZ = startZ - this.scrollProgress * (startZ - endZ);
 
-    // Lateral S-curve trajectory: tighter sway on mobile keeps camera in corridor
-    const swayAmount = this.isMobile ? 55 : 120;
-    const pointerInfluence = this.isMobile ? 22 : 45;
+    // Lateral S-curve trajectory
+    const swayAmount = this.isMobile ? 36 : 120;
+    const pointerInfluence = this.isMobile ? 20 : 45;
     const targetX = Math.sin(this.scrollProgress * Math.PI * 2.4) * swayAmount + this.pointer.x * pointerInfluence;
-    const targetY = 38 + Math.cos(this.scrollProgress * Math.PI * 2) * 22 + this.pointer.y * 22;
+    const targetY = (this.isMobile ? 40 : 38) + Math.cos(this.scrollProgress * Math.PI * 2) * 20 + this.pointer.y * 20;
 
     // Camera damping
     this.camera.position.z += (targetZ - this.camera.position.z) * 0.08;
@@ -523,16 +553,16 @@ export class Hero3DScrollytelling {
     // Look-ahead tracking
     const lookAheadZ = this.camera.position.z - 360;
     const lookAheadX = Math.sin((this.scrollProgress + 0.1) * Math.PI * 2.4) * (swayAmount * 0.65);
-    this.cameraTarget.set(lookAheadX, 15, lookAheadZ);
+    this.cameraTarget.set(lookAheadX, 16, lookAheadZ);
     this.camera.lookAt(this.cameraTarget);
 
     // Subtle Dutch roll (tilt) during turns
-    this.camera.rotation.z = Math.sin(this.scrollProgress * Math.PI * 2.4) * -0.035 + this.pointer.x * -0.012;
+    this.camera.rotation.z = Math.sin(this.scrollProgress * Math.PI * 2.4) * -0.03 + this.pointer.x * -0.01;
 
     // SpotLight follows camera
     if (this.lights.spot) {
       this.lights.spot.position.set(this.camera.position.x, this.camera.position.y + 40, this.camera.position.z);
-      this.lights.spot.target.position.set(lookAheadX, 15, lookAheadZ);
+      this.lights.spot.target.position.set(lookAheadX, 16, lookAheadZ);
       this.lights.spot.target.updateMatrixWorld();
     }
 
@@ -546,14 +576,12 @@ export class Hero3DScrollytelling {
 
     // 3. Floating animation on monoliths & laser alignment line scan
     this.monoliths.forEach((m, idx) => {
-      // Harmonic floating motion
-      m.mesh.position.y = m.baseY + Math.sin(elapsedTime * 1.3 + m.phaseOffset) * 8;
+      m.mesh.position.y = m.baseY + Math.sin(elapsedTime * 1.3 + m.phaseOffset) * 7;
       
       if (!m.isCenterpiece) {
-        m.mesh.rotation.y = m.baseRotY + Math.sin(elapsedTime * 0.75 + m.phaseOffset) * 0.04;
+        m.mesh.rotation.y = m.baseRotY + Math.sin(elapsedTime * 0.75 + m.phaseOffset) * 0.035;
         m.mesh.rotation.x = m.baseRotX + Math.cos(elapsedTime * 0.65 + m.phaseOffset) * 0.02;
       } else {
-        // Centerpiece maintains dignified frontal orientation with very gentle breathing
         m.mesh.rotation.y = Math.sin(elapsedTime * 0.5) * 0.015;
       }
 
@@ -561,14 +589,14 @@ export class Hero3DScrollytelling {
       if (m.shadowMesh) {
         m.shadowMesh.position.x = m.mesh.position.x;
         m.shadowMesh.position.z = m.mesh.position.z;
-        m.shadowMesh.scale.setScalar(1 + Math.sin(elapsedTime * 1.3 + m.phaseOffset) * 0.05);
+        m.shadowMesh.scale.setScalar(1 + Math.sin(elapsedTime * 1.3 + m.phaseOffset) * 0.04);
       }
 
       // Approach highlight: subtle lift as camera glides near
       const distToCamera = Math.abs(this.camera.position.z - m.z);
       if (distToCamera < 460) {
         const factor = 1 - distToCamera / 460;
-        m.mesh.position.y += factor * 7;
+        m.mesh.position.y += factor * 6;
       }
     });
 
@@ -577,27 +605,18 @@ export class Hero3DScrollytelling {
       laser.mesh.position.y = Math.sin(elapsedTime * laser.speed) * (laser.maxTravel || 55);
     });
 
-    // 4. Rotate Central Architectural Prism (Entrance Landmark)
+    // 4. Rotate Central Architectural Beacon
     if (this.centralCrystal) {
       this.centralCrystal.rotation.y += delta * 0.45;
-      this.centralCrystal.rotation.x = Math.sin(elapsedTime * 0.5) * 0.2;
-      this.centralCrystal.position.y = 110 + Math.sin(elapsedTime * 1.4) * 10;
-
-      // Expand / disperse prism as camera flies through
-      const dist = this.camera.position.z - this.centralCrystal.position.z;
-      if (dist < 220 && dist > -160) {
-        const expandFactor = Math.max(0, 1 - Math.abs(dist) / 220);
-        this.centralCrystal.scale.setScalar(1 + expandFactor * 0.85);
-      } else {
-        this.centralCrystal.scale.set(1, 1, 1);
-      }
+      this.centralCrystal.rotation.x = Math.sin(elapsedTime * 0.5) * 0.15;
+      this.centralCrystal.position.y = (this.isMobile ? 162 : 155) + Math.sin(elapsedTime * 1.4) * 6;
     }
 
     // 5. Gently drift ambient dust particles
     if (this.particles) {
       const positions = this.particles.geometry.attributes.position.array;
       for (let i = 0; i < positions.length; i += 3) {
-        positions[i + 1] += Math.sin(elapsedTime + positions[i]) * 0.18;
+        positions[i + 1] += Math.sin(elapsedTime + positions[i]) * 0.16;
       }
       this.particles.geometry.attributes.position.needsUpdate = true;
     }
