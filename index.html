@@ -231,119 +231,189 @@
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
 
   <!-- =====================================================================
-       FIXED LUXURY HEADER NAVIGATION
+       SITE HEADER: FIXED LUXURY ARCHITECTURAL NAVIGATION (MOBILE-FIRST)
        ===================================================================== -->
-  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)] transition-all duration-300">
-    <div class="h-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin flex items-center justify-between gap-4">
+  <header class="site-header fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo / Wordmark -->
-      <a href="#scene-01" class="flex items-center gap-space-md group">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#E8C178] via-[#C5A15B] to-[#775A1B] flex items-center justify-center shadow-sm text-white font-serif font-bold text-sm tracking-widest shrink-0 border border-primary/30 select-none">LBK</div>
-        <div class="flex flex-col justify-center">
-          <span class="font-label-md text-label-md uppercase tracking-[0.12em] text-on-surface font-semibold">Lalchand Banshidhar Kumawat</span>
-          <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant hidden sm:inline-block">Civil Work Contractor • Marble • Granite • Tiles</span>
+      <!-- Brand Logo / Monogram -->
+      <a href="#scene-01" class="flex items-center gap-2.5 sm:gap-3 group">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-primary via-primary-container to-surface-tint flex items-center justify-center text-on-primary font-serif font-bold text-base sm:text-lg shadow-md group-hover:scale-105 transition-all">
+          LBK
+        </div>
+        <div class="flex flex-col text-left">
+          <span class="font-serif font-bold text-xs sm:text-sm tracking-wider uppercase text-on-surface">Lalchand Kumawat</span>
+          <span class="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.14em] text-on-surface-variant/80">Civil Contractor • Udaipur</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-        <a class="uppercase transition-colors duration-200 text-primary font-semibold text-label-md" href="#scene-01">Home</a>
-        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-02">About</a>
-        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-04">Services</a>
-        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-03">Projects</a>
-        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#scene-08">Our Process</a>
-        <a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors duration-200" href="#quote-section">Contact</a>
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold uppercase tracking-[0.14em] text-on-surface-variant">
+        <a href="#scene-01" class="hover:text-primary transition-colors py-1">3D Pavilion</a>
+        <a href="#scene-03" class="hover:text-primary transition-colors py-1">Portfolio (3D)</a>
+        <a href="#scene-05" class="hover:text-primary transition-colors py-1">Stone Lab</a>
+        <a href="#scene-04" class="hover:text-primary transition-colors py-1">Standards</a>
+        <a href="#scene-07" class="hover:text-primary transition-colors py-1">Services</a>
+        <a href="#quote-section" class="hover:text-primary transition-colors py-1">Contact</a>
       </nav>
 
-      <!-- Action Button & Mobile Hamburger -->
-      <div class="flex items-center gap-space-md">
-        <a class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 bg-primary-container text-on-primary-container font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-all duration-200 btn-shine-wrap shadow-sm hover:shadow" href="#quote-section">
+      <!-- Right CTAs & Mobile Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3.5">
+        <!-- Direct Phone Tap Button -->
+        <a href="tel:+919414162659" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-on-primary-container rounded-full text-xs font-mono font-bold flex items-center gap-1.5 transition-all border border-outline-variant/30 shadow-sm" aria-label="Call Lalchand Kumawat">
+          <span class="text-primary font-bold">📞</span>
+          <span class="hidden sm:inline">+91 94141 62659</span>
+          <span class="sm:hidden text-[11px]">Call</span>
+        </a>
+
+        <!-- Desktop Get Quote Button -->
+        <a href="#quote-section" class="hidden md:inline-flex px-4 py-2 bg-inverse-surface hover:bg-primary text-inverse-on-surface hover:text-on-primary text-xs font-semibold uppercase tracking-[0.12em] rounded-full transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
           Get a Quote
         </a>
-        <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center text-on-surface focus:outline-none" aria-label="Toggle Mobile Menu">
-          <span class="material-symbols-outlined text-[24px]">menu</span>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-on-surface hover:text-primary rounded-lg focus:outline-none transition-colors" aria-label="Open Navigation Drawer">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+  <!-- Mobile Slide-Out Navigation Drawer -->
+  <aside id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation Menu">
     <div>
-      <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30 mb-6">
-        <span class="font-headline-sm text-headline-sm text-on-surface">LBK Contractor</span>
-        <button id="mobile-drawer-close" class="text-on-surface-variant hover:text-primary" onclick="document.getElementById('mobile-nav-drawer').classList.remove('is-open'); document.body.style.overflow='';" aria-label="Close menu">
-          <span class="material-symbols-outlined text-[24px]">close</span>
+      <div class="flex items-center justify-between pb-4 border-b border-outline-variant/30">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-primary-container to-surface-tint flex items-center justify-center text-on-primary font-serif font-bold text-base shadow-sm">
+            LBK
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif font-bold text-sm text-on-surface">Lalchand Kumawat</span>
+            <span class="text-[9px] font-mono uppercase tracking-wider text-on-surface-variant">Civil Work Contractor</span>
+          </div>
+        </div>
+        <button id="mobile-drawer-close-btn" class="p-1.5 text-on-surface-variant hover:text-primary rounded-full" aria-label="Close menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
         </button>
       </div>
-      <nav class="flex flex-col gap-4">
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-01">Home</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-02">About</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-03">Projects 3D</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-04">Tile Engineering</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-05">Marble & Granite 3D</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-06">Transformation Slider</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2 border-b border-outline-variant/10" href="#scene-08">5-Step Process</a>
-        <a class="mobile-nav-link font-label-md uppercase text-on-surface hover:text-primary py-2" href="#quote-section">Consultation Quote</a>
+
+      <nav class="flex flex-col space-y-1.5 mt-5 text-sm font-semibold uppercase tracking-wider text-on-surface">
+        <a href="#scene-01" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>3D Architectural Pavilion</span>
+          <span class="text-xs text-primary">01</span>
+        </a>
+        <a href="#scene-02" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Spatial Immersion</span>
+          <span class="text-xs text-primary">02</span>
+        </a>
+        <a href="#scene-03" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Portfolio Deck (3D)</span>
+          <span class="text-xs text-primary">03</span>
+        </a>
+        <a href="#scene-04" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Precision Standards</span>
+          <span class="text-xs text-primary">04</span>
+        </a>
+        <a href="#scene-05" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Stone Laboratory (3D)</span>
+          <span class="text-xs text-primary">05</span>
+        </a>
+        <a href="#scene-06" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Before & After Slider</span>
+          <span class="text-xs text-primary">06</span>
+        </a>
+        <a href="#scene-07" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Turnkey Civil Services</span>
+          <span class="text-xs text-primary">07</span>
+        </a>
+        <a href="#scene-08" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors">
+          <span>Execution Process</span>
+          <span class="text-xs text-primary">08</span>
+        </a>
+        <a href="#quote-section" class="mobile-nav-link flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-surface-container transition-colors text-primary font-bold">
+          <span>Get Consultation & Quote</span>
+          <span class="text-xs font-mono">→</span>
+        </a>
       </nav>
     </div>
-    <div class="pt-6 border-t border-outline-variant/20">
-      <a href="tel:+919876543210" class="block font-label-md text-primary font-semibold mb-1">+91 98765 43210</a>
-      <span class="font-body-sm text-on-surface-variant block">Sukher Industrial Complex, Udaipur</span>
+
+    <!-- Mobile Drawer Bottom Quick Contact -->
+    <div class="pt-5 border-t border-outline-variant/30 space-y-2.5">
+      <div class="text-[10px] font-mono text-on-surface-variant uppercase tracking-wider text-center">
+        Sukher, NH-8, Udaipur, Rajasthan
+      </div>
+      <a href="tel:+919414162659" class="w-full py-2.5 bg-inverse-surface text-inverse-on-surface rounded-full text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm">
+        <span>📞</span> Call +91 94141 62659
+      </a>
+      <a href="https://wa.me/919414162659?text=Hello%20Lalchand%20ji%2C%20I%20would%20like%20to%20inquire%20about%20civil%20contracting%20and%20stone%20work%20for%20my%20project." target="_blank" rel="noopener noreferrer" class="w-full py-2 bg-[#25D366] text-white rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm">
+        <span>💬</span> Chat on WhatsApp
+      </a>
     </div>
-  </div>
+  </aside>
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
 
-  <main class="w-full pt-20 bg-surface min-h-screen">
-    <div class="flex flex-col w-full relative">
+  <!-- =====================================================================
+       FLOATING MOBILE WHATSAPP QUICK-ACTION CTA
+       ===================================================================== -->
+  <aside class="fixed bottom-5 right-4 z-40 sm:bottom-6 sm:right-6 group" aria-label="Quick WhatsApp Contact">
+    <a href="https://wa.me/919414162659?text=Hello%20Lalchand%20ji%2C%20I%20would%20like%20to%20inquire%20about%20civil%20contracting%20and%20stone%20work%20for%20my%20project." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="flex items-center gap-2.5 px-4 py-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 group-hover:shadow-[0_12px_28px_rgba(37,211,102,0.55)]">
+      <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span class="text-xs font-bold tracking-wide font-sans hidden sm:inline">WhatsApp LBK</span>
+      <span class="text-xs font-bold tracking-wide font-sans sm:hidden">WhatsApp</span>
+    </a>
+  </aside>
 
-      
 
-      <!-- =====================================================================
-           SCENE 01: ARRIVAL (CINEMATIC CAMERA PUSH-IN)
+  <!-- =====================================================================
+           SCENE 01: ARRIVAL — 3D SPATIAL CAMERA FLYTHROUGH SCROLLYTELLING
            ===================================================================== -->
-      <section class="relative w-full min-h-[942px] flex items-center justify-center overflow-hidden bg-surface-container-low px-margin-mobile md:px-margin-tablet lg:px-margin py-space-2xl hero-scene-container" id="scene-01">
-        <div class="absolute inset-0 z-0 opacity-25 mix-blend-multiply bg-cover bg-center hero-bg-anim hero-bg-media" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=85');"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent z-0"></div>
+      <section id="scene-01" class="relative w-full bg-surface pt-16 sm:pt-18">
+        <div id="hero-scrolly-track" class="relative w-full min-h-[350vh]">
+          <div id="hero-pinned-stage" class="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-surface select-none">
+            
+            <!-- Three.js Real-Time 3D WebGL Camera Flythrough Viewport -->
+            <div id="hero-3d-viewport" class="absolute inset-0 w-full h-full z-0 cursor-grab active:cursor-grabbing"></div>
 
-        <div class="relative z-10 max-w-[1200px] w-full mx-auto flex flex-col items-center text-center hero-text-group">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-surface-container-lowest/95 backdrop-blur-md shadow-sm mb-space-lg border border-outline-variant/30 animate-hero-1">
-            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant font-medium">Master Civil Contracting • Sukher, Udaipur</span>
-          </div>
-          <h1 class="font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface max-w-4xl tracking-tight mb-space-md animate-hero-2">
-            Spaces Crafted with Precision.
-          </h1>
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-space-xl animate-hero-3">
-            Tiles, Granite, Marble and Interior Finishing — executing uncompromising stone engineering and luxury residential architectural craftsmanship.
-          </p>
-          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-hero-4">
-            <a class="w-full sm:w-auto px-8 py-3.5 bg-inverse-surface text-inverse-on-surface font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 text-center btn-shine-wrap relative border border-transparent hover:border-primary-container" href="#scene-03">
-              Explore Our Work
-            </a>
-            <a class="w-full sm:w-auto px-8 py-3.5 bg-surface-container-lowest text-on-surface font-label-md text-label-md uppercase tracking-[0.12em] hover:bg-surface-container-high transition-all duration-300 shadow-sm hover:shadow hover:-translate-y-0.5 text-center border border-outline-variant/30" href="#quote-section">
-              Discuss Your Project
-            </a>
-          </div>
+            <!-- Soft Top & Bottom Ambient Vignette -->
+            <div class="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-surface/90 via-surface/40 to-transparent z-10"></div>
+            <div class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-surface/90 via-surface/40 to-transparent z-10"></div>
 
-          <!-- Proof Stat Banner -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter w-full max-w-4xl mt-space-2xl pt-space-lg animate-hero-5">
-            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-              <span class="font-headline-md text-headline-md text-primary block group-hover:scale-105 origin-left transition-transform duration-300">28+</span>
-              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Years Legacy</span>
+            <!-- Top Floating Flight Telemetry HUD Pill -->
+            <div class="absolute top-20 md:top-24 z-30 flex flex-col items-center pointer-events-none px-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 bg-surface-container-lowest/85 backdrop-blur-xl rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-primary/25 text-[10px] sm:text-[11px] font-mono text-on-surface-variant transition-all">
+                <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                <span id="hud-zone-val" class="font-semibold uppercase tracking-wider text-on-surface">ZONE 01 • PAVILION</span>
+                <span class="text-outline-variant/60">•</span>
+                <span class="text-primary font-bold">DEPTH: <span id="hud-depth-val">-0.0 m</span></span>
+                <span class="hidden sm:inline text-outline-variant/60">•</span>
+                <span class="hidden sm:inline text-on-surface-variant/80">POS: <span id="hud-coords-val">[0, 48, 750]</span></span>
+              </div>
+              <div class="w-36 sm:w-44 h-0.5 bg-outline-variant/20 rounded-full mt-1.5 overflow-hidden">
+                <div id="hud-progress-fill" class="h-full bg-gradient-to-r from-primary via-primary-container to-primary w-0 transition-all duration-75"></div>
+              </div>
             </div>
-            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-              <span class="font-headline-md text-headline-md text-on-surface block group-hover:scale-105 origin-left transition-transform duration-300">450+</span>
-              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Estates Completed</span>
+
+            <!-- Bottom Floating Exploration Bar: 100% Clean, NO Modal Popups -->
+            <div class="absolute bottom-6 sm:bottom-8 z-30 flex items-center justify-center w-full px-4 pointer-events-none">
+              <div class="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 sm:px-5 sm:py-2.5 bg-surface-container-lowest/90 backdrop-blur-xl rounded-full border border-primary/25 shadow-[0_4px_25px_rgba(0,0,0,0.08)] text-[10px] sm:text-xs font-mono text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="hidden sm:inline font-semibold uppercase tracking-wider text-on-surface">3D Architectural Pavilion •</span>
+                <span class="hidden sm:inline text-on-surface-variant">DRAG TO ORBIT •</span>
+                <span class="text-primary font-bold">SWIPE / SCROLL TO FLY THROUGH ↓</span>
+              </div>
             </div>
-            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-              <span class="font-headline-md text-headline-md text-primary block group-hover:scale-105 origin-left transition-transform duration-300">100%</span>
-              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Dry Joinery Tolerance</span>
-            </div>
-            <div class="text-left bg-surface-container-lowest p-space-md shadow-sm border border-transparent hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 group cursor-default">
-              <span class="font-headline-md text-headline-md text-on-surface block group-hover:scale-105 origin-left transition-transform duration-300">Zero</span>
-              <span class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant">Hollow Sound</span>
-            </div>
+
           </div>
         </div>
       </section>
@@ -398,7 +468,7 @@
             </div>
             
             <!-- Category Filter Tabs -->
-            <div class="flex flex-wrap items-center gap-2" id="portfolio-filters">
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-2 pt-1 no-scrollbar touch-pan-x" id="portfolio-filters">
               <button class="px-3.5 py-1.5 bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all shadow-sm rounded-none border border-transparent font-medium" data-cat="all">All Works</button>
               <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="marble">Marble</button>
               <button class="px-3.5 py-1.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest font-label-sm text-label-sm uppercase tracking-[0.15em] transition-all rounded-none border border-transparent font-medium" data-cat="granite">Granite</button>

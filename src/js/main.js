@@ -10,11 +10,23 @@ import '../styles/animations.css';
 import { CoverflowCarousel } from './coverflow3d.js';
 import { StoneViewer3D } from './stoneViewer3d.js';
 import { ScrollytellingEngine } from './scrollytelling.js';
+import { Hero3DScrollytelling } from './hero3dScrolly.js';
+
 import { initBeforeAfterSlider } from './beforeAfter.js';
 import { initConsultationForm } from './formHandler.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Initializing LBK Cinematic Scrollytelling Experience...');
+
+  // 0. Initialize 3D Spatial Flythrough Scrollytelling Hero (Scene 01)
+  const heroTrack = document.getElementById('hero-scrolly-track');
+  let hero3DInstance = null;
+  if (heroTrack) {
+    hero3DInstance = new Hero3DScrollytelling({
+      containerId: 'hero-3d-viewport',
+      trackId: 'hero-scrolly-track'
+    });
+  }
 
   // 1. Initialize 3D Perspective Coverflow Carousel (Scene 03)
   const carouselContainer = document.getElementById('scene-03');
@@ -107,20 +119,41 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Mobile Menu Drawer Navigation
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+  const mobileDrawerCloseBtn = document.getElementById('mobile-drawer-close-btn');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  const closeDrawer = () => {
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove('is-open');
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  const openDrawer = () => {
+    if (mobileNavDrawer) mobileNavDrawer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
 
   if (mobileMenuBtn && mobileNavDrawer) {
     mobileMenuBtn.addEventListener('click', () => {
-      mobileNavDrawer.classList.toggle('is-open');
-      const isOpen = mobileNavDrawer.classList.contains('is-open');
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      const isOpen = mobileNavDrawer.classList.contains('is-open') || mobileNavDrawer.classList.contains('open');
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
     });
 
+    if (mobileDrawerCloseBtn) {
+      mobileDrawerCloseBtn.addEventListener('click', closeDrawer);
+    }
+
+    if (mobileNavOverlay) {
+      mobileNavOverlay.addEventListener('click', closeDrawer);
+    }
+
     mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNavDrawer.classList.remove('is-open');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeDrawer);
     });
   }
 

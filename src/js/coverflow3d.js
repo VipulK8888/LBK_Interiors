@@ -161,9 +161,9 @@ export class CoverflowCarousel {
   calculateRadius() {
     const width = window.innerWidth;
     if (width < 640) {
-      this.radius = 360;
+      this.radius = Math.min(300, Math.max(240, width * 0.68));
     } else if (width < 1024) {
-      this.radius = 480;
+      this.radius = 460;
     } else {
       this.radius = 580;
     }

@@ -536,3 +536,157 @@ body {
   perspective: 1400px;
   transform-style: preserve-3d;
 }
+
+
+/* ==========================================================================
+   HERO FRAME-BY-FRAME CANVAS PORTAL & HUD
+   ========================================================================== */
+#hero-scrolly-track {
+  position: relative;
+  width: 100%;
+}
+
+#hero-pinned-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-warm-ivory);
+  background-image: 
+    radial-gradient(ellipse at 80% 20%, rgba(197, 161, 91, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(218, 203, 189, 0.12) 0%, transparent 60%);
+}
+
+.hero-canvas-portal {
+  position: relative;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 60px -15px rgba(40, 40, 40, 0.16), 0 0 0 1px rgba(197, 161, 91, 0.28);
+  background: #FFFFFF;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-canvas-portal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 32px 75px -12px rgba(40, 40, 40, 0.22), 0 0 0 1.5px rgba(197, 161, 91, 0.45);
+}
+
+.hero-canvas-portal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.04);
+  z-index: 2;
+}
+
+#hero-frame-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+@media (max-width: 1023px) {
+  #hero-pinned-stage {
+    min-height: auto;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* ==========================================================================
+   3D SPATIAL FLYTHROUGH VIEWPORT & KINETIC ACTS
+   ========================================================================== */
+#hero-3d-viewport {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#hero-3d-viewport canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.hero-act-panel {
+  width: 100%;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   MOBILE-FIRST LUXURY HEADER & NAVIGATION DRAWER
+   ========================================================================== */
+.site-header {
+  height: 4rem;
+  background: rgba(250, 249, 246, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(197, 161, 91, 0.2);
+  z-index: 50;
+}
+.site-header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background: rgba(250, 249, 246, 0.98);
+}
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 82%;
+  max-width: 340px;
+  height: 100vh;
+  background: #FFFFFF;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.16);
+  z-index: 60;
+  transition: right 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.mobile-nav-drawer.is-open,
+.mobile-nav-drawer.open {
+  right: 0;
+}
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 40, 40, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.mobile-nav-drawer.is-open ~ .mobile-nav-overlay,
+.mobile-nav-drawer.open ~ .mobile-nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Horizontal Filter Scroll Bar Hiding */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

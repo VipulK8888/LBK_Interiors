@@ -107,58 +107,9 @@ export class ScrollytellingEngine {
     });
   }
 
-  // SCENE 01: ARRIVAL CAMERA PUSH-IN
+  // SCENE 01: ARRIVAL CAMERA PUSH-IN (Handled by FrameSequenceScrollytelling)
   initScene01Arrival() {
-    const heroSection = document.getElementById('scene-01');
-    if (!heroSection) return;
-
-    const heroBg = heroSection.querySelector('.hero-bg-anim');
-    const heroContent = heroSection.querySelector('.relative.z-10');
-    const statsBanner = heroSection.querySelector('.grid.grid-cols-2');
-
-    if (heroBg) {
-      gsap.to(heroBg, {
-        scale: 1.15,
-        y: 60,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroSection,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.8
-        }
-      });
-    }
-
-    if (heroContent) {
-      gsap.to(heroContent, {
-        y: -40,
-        opacity: 0.85,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroSection,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.8
-        }
-      });
-    }
-
-    if (statsBanner) {
-      const stats = statsBanner.querySelectorAll('div');
-      gsap.from(stats, {
-        y: 30,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: statsBanner,
-          start: 'top 85%',
-          toggleActions: 'play reverse play reverse'
-        }
-      });
-    }
+    // Coordinated via FrameSequenceScrollytelling with high-performance canvas scrubbing
   }
 
   // SCENE 02: SPATIAL IMMERSION (EXTERIOR TO INTERIOR TRANSITION)
@@ -166,8 +117,8 @@ export class ScrollytellingEngine {
     const scene02 = document.getElementById('scene-02');
     if (!scene02) return;
 
-    const mediaWrap = scene02.querySelector('.lg\:col-span-7');
-    const textGroup = scene02.querySelector('.lg\:col-span-5');
+    const mediaWrap = scene02.querySelector('[class*="col-span-7"]');
+    const textGroup = scene02.querySelector('[class*="col-span-5"]');
 
     if (mediaWrap) {
       gsap.fromTo(mediaWrap, 
