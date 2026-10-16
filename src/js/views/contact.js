@@ -28,14 +28,14 @@ export function renderContact() {
           <div class="contact-direct-info reveal-init">
             <div class="contact-info-block">
               <span class="text-meta" style="color: var(--accent-stone);">PHONE</span>
-              <a href="tel:+919820012345" style="font-size: 1.2rem; font-weight: 500;">+91 98200 12345</a>
+              <a href="tel:+91 88881 99091" style="font-size: 1.2rem; font-weight: 500;">+91 88881 99091</a>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Mon — Sat, 9:00 AM — 7:30 PM IST</span>
             </div>
 
             <div class="contact-info-block">
               <span class="text-meta" style="color: var(--accent-stone);">WHATSAPP INQUIRIES</span>
               <a href="https://wa.me/919820012345?text=Hello%20LBK%20Surfaces,%20I%20would%20like%20to%20request%20a%20quote." target="_blank" rel="noopener noreferrer" style="font-size: 1.2rem; font-weight: 500;">
-                +91 98200 12345 →
+                +91 88881 99091 →
               </a>
               <span style="font-size: 0.85rem; color: var(--text-muted);">Instant drawing review & site video dispatch</span>
             </div>
@@ -67,7 +67,7 @@ export function renderContact() {
                 </div>
                 <div class="form-group">
                   <label for="form-phone" class="form-label">Phone Number *</label>
-                  <input type="tel" id="form-phone" class="form-input" required placeholder="+91 98765 43210" />
+                  <input type="tel" id="form-phone" class="form-input" required placeholder="+91 88881 99091" />
                 </div>
               </div>
 

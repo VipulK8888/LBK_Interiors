@@ -170,5 +170,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
+  // 7. Auto-sync phone & WhatsApp numbers from window.LBK_CONFIG
+  if (window.LBK_CONFIG) {
+    const { callTel, callNumber, whatsappNumber } = window.LBK_CONFIG;
+    if (callTel) {
+      document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+        el.setAttribute('href', `tel:${callTel}`);
+      });
+    }
+    if (callNumber) {
+      document.querySelectorAll('.lbk-phone-display').forEach(el => {
+        el.textContent = callNumber;
+      });
+    }
+    if (whatsappNumber) {
+      document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+        const prefilledText = "Hello%20Lalchand%20ji%2C%20I%20would%20like%20to%20inquire%20about%20civil%20contracting%20and%20stone%20work%20for%20my%20project.";
+        el.setAttribute('href', `https://wa.me/${whatsappNumber}?text=${prefilledText}`);
+      });
+    }
+  }
+
   console.log('LBK Cinematic Experience Loaded Successfully.');
 });

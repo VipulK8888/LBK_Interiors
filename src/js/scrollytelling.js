@@ -181,7 +181,7 @@ export class ScrollytellingEngine {
     const scene04 = document.getElementById('scene-04');
     if (!scene04) return;
 
-    const tileImgWrap = scene04.querySelector('.aspect-\[4\/3\]');
+    const tileImgWrap = scene04.querySelector('[class*="aspect-"]');
     if (tileImgWrap && !tileImgWrap.querySelector('.laser-guide-line')) {
       const laser = document.createElement('div');
       laser.className = 'laser-guide-line';
@@ -312,7 +312,7 @@ export class ScrollytellingEngine {
     const scene08 = document.getElementById('scene-08');
     if (!scene08) return;
 
-    const cardsContainer = scene08.querySelector('.grid.md\:grid-cols-5');
+    const cardsContainer = scene08.querySelector('[class*="grid-cols-5"], .grid');
     if (!cardsContainer) return;
 
     // Inject SVG line behind cards on desktop
