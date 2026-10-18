@@ -1,0 +1,186 @@
+[
+  {
+    "id": 1,
+    "name": "Onyx River Calacatta",
+    "filename": "tile_01.jpg",
+    "path": "/tiles/tile_01.jpg",
+    "avgColor": "#7d7a76",
+    "original": "IMG-20260507-WA0008.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Statuario Classic Vein",
+    "filename": "tile_02.jpg",
+    "path": "/tiles/tile_02.jpg",
+    "avgColor": "#d2c9cb",
+    "original": "IMG-20260507-WA0009.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Royal Obsidian Diamond",
+    "filename": "tile_03.jpg",
+    "path": "/tiles/tile_03.jpg",
+    "avgColor": "#a5a3a7",
+    "original": "IMG-20260507-WA0010.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Ivory Polish Vitrified",
+    "filename": "tile_04.jpg",
+    "path": "/tiles/tile_04.jpg",
+    "avgColor": "#bcc1c5",
+    "original": "IMG-20260507-WA0011.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Artisanal Rosette Medallion",
+    "filename": "tile_05.jpg",
+    "path": "/tiles/tile_05.jpg",
+    "avgColor": "#b2a6a3",
+    "original": "IMG-20260507-WA0012.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Honed Grigio Granite",
+    "filename": "tile_06.jpg",
+    "path": "/tiles/tile_06.jpg",
+    "avgColor": "#a8a3a3",
+    "original": "IMG-20260507-WA0013.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Floral Geometry Inlay",
+    "filename": "tile_07.jpg",
+    "path": "/tiles/tile_07.jpg",
+    "avgColor": "#acaaad",
+    "original": "IMG-20260507-WA0014.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Silver Travertine Grain",
+    "filename": "tile_08.jpg",
+    "path": "/tiles/tile_08.jpg",
+    "avgColor": "#bbb6b8",
+    "original": "IMG-20260507-WA0015.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Golden Travertine Vein",
+    "filename": "tile_09.jpg",
+    "path": "/tiles/tile_09.jpg",
+    "avgColor": "#b5b6b8",
+    "original": "IMG-20260507-WA0016.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Concentric Wood & Stone",
+    "filename": "tile_10.jpg",
+    "path": "/tiles/tile_10.jpg",
+    "avgColor": "#a49b95",
+    "original": "IMG-20260507-WA0017.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Chevron Parquet Wood",
+    "filename": "tile_11.jpg",
+    "path": "/tiles/tile_11.jpg",
+    "avgColor": "#b1acac",
+    "original": "IMG-20260507-WA0018.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Moroccan Star Medallion",
+    "filename": "tile_12.jpg",
+    "path": "/tiles/tile_12.jpg",
+    "avgColor": "#adabaf",
+    "original": "IMG-20260507-WA0019.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Tufted Diamond Ceramic",
+    "filename": "tile_13.jpg",
+    "path": "/tiles/tile_13.jpg",
+    "avgColor": "#b8a9a2",
+    "original": "IMG-20260507-WA0020.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Andalusian Patchwork",
+    "filename": "tile_14.jpg",
+    "path": "/tiles/tile_14.jpg",
+    "avgColor": "#a09998",
+    "original": "IMG-20260507-WA0021.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Diamond Frame Carrara",
+    "filename": "tile_15.jpg",
+    "path": "/tiles/tile_15.jpg",
+    "avgColor": "#a79b99",
+    "original": "IMG-20260507-WA0022.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Staggered Wood Plank",
+    "filename": "tile_16.jpg",
+    "path": "/tiles/tile_16.jpg",
+    "avgColor": "#a59e9c",
+    "original": "IMG-20260507-WA0023.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Granular Terrazzo Stone",
+    "filename": "tile_17.jpg",
+    "path": "/tiles/tile_17.jpg",
+    "avgColor": "#bcb8bb",
+    "original": "IMG-20260507-WA0024.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Crema Marfil Soft Vein",
+    "filename": "tile_18.jpg",
+    "path": "/tiles/tile_18.jpg",
+    "avgColor": "#b8b4b1",
+    "original": "IMG-20260507-WA0025.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Baroque Scroll Medallion",
+    "filename": "tile_19.jpg",
+    "path": "/tiles/tile_19.jpg",
+    "avgColor": "#74645d",
+    "original": "IMG-20260507-WA0026.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Statuario Venato Bookmatch",
+    "filename": "tile_20.jpg",
+    "path": "/tiles/tile_20.jpg",
+    "avgColor": "#bebabc",
+    "original": "IMG-20260507-WA0027.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Optical 3D Gold Prism",
+    "filename": "tile_21.jpg",
+    "path": "/tiles/tile_21.jpg",
+    "avgColor": "#b8b0ae",
+    "original": "IMG-20260507-WA0028.jpg"
+  },
+  {
+    "id": 22,
+    "name": "Brass Inlay Statuario",
+    "filename": "tile_22.jpg",
+    "path": "/tiles/tile_22.jpg",
+    "avgColor": "#817d7e",
+    "original": "IMG-20260507-WA0029.jpg"
+  },
+  {
+    "id": 23,
+    "name": "Pure Statuario Marble",
+    "filename": "tile_23.jpg",
+    "path": "/tiles/tile_23.jpg",
+    "avgColor": "#b7b5b7",
+    "original": "IMG-20260507-WA0030.jpg"
+  }
+]

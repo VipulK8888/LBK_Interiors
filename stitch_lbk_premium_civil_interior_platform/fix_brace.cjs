@@ -1,20 +1,13 @@
 const fs = require('fs');
-const path = require('path');
+const cssFile = 'c:/Users/Vipul_kumawat/Documents/LBK_Interiors/src/styles/scrollytelling.css';
+let css = fs.readFileSync(cssFile, 'utf8');
 
-const filePath = path.resolve(__dirname, '../src/js/coverflow3d.js');
-let code = fs.readFileSync(filePath, 'utf8');
-
-code = code.replace(
-`    } else {
-      this.radius = 580;
-    }
+// Replace the duplicate closing brace
+css = css.replace(/@media \(min-width: 768px\) \{\s*#floorTag \{\s*bottom: calc\(env\(safe-area-inset-bottom, 0px\) \+ 24px\);\s*\}\s*\}\s*\}/, `@media (min-width: 768px) {
+  #floorTag {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
   }
-  }`,
-`    } else {
-      this.radius = 580;
-    }
-  }`
-);
+}`);
 
-fs.writeFileSync(filePath, code, 'utf8');
-console.log('Fixed extra brace in coverflow3d.js!');
+fs.writeFileSync(cssFile, css, 'utf8');
+console.log('Fixed extra brace in scrollytelling.css');

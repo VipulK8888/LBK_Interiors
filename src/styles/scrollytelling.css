@@ -690,3 +690,301 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ==========================================================================
+   CLAUDE 3D SCROLLYTELLING ENGINE - INTEGRATED ARCHITECTURAL STYLES
+   ========================================================================== */
+#track {
+  position: relative;
+  min-height: 380vh;
+  background: var(--color-warm-ivory, #FAF9F6);
+}
+
+#stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-warm-ivory, #FAF9F6);
+  touch-action: pan-y;
+}
+
+#gl {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pill {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 24px);
+  background: rgba(26, 24, 22, 0.88);
+  color: #FAF9F6;
+  border-radius: 999px;
+  font: 400 11px/1 "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.06em;
+  padding: 10px 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  border: 1px solid rgba(197, 161, 91, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  z-index: 25;
+}
+
+#hudTop {
+  top: calc(env(safe-area-inset-top, 0px) + 72px);
+  padding-bottom: 14px;
+}
+
+#bar {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 5px;
+  height: 2px;
+  background: rgba(250, 249, 246, 0.2);
+  border-radius: 2px;
+}
+
+#bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--color-gold, #C5A15B);
+  border-radius: 2px;
+  transition: width 0.08s linear;
+}
+
+#hudBot {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 72px);
+}
+
+#floorTag {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  background: rgba(26, 24, 22, 0.85);
+  color: #C5A15B;
+  font-weight: 500;
+  border: 1px solid rgba(197, 161, 91, 0.35);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 768px) {
+  #floorTag {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  }
+}
+
+.cap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  pointer-events: none;
+  color: #1A1816;
+  z-index: 20;
+}
+
+.cap h1 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(36px, 9vw, 92px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0;
+  color: #1A1816;
+}
+
+.cap p {
+  margin: 14px 0 0;
+  font-size: clamp(12px, 3.2vw, 16px);
+  letter-spacing: 0.18em;
+  color: #5c554a;
+  max-width: 34em;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.cue {
+  display: block;
+  width: 1px;
+  height: 46px;
+  margin: 26px auto 0;
+  background: linear-gradient(#C5A15B, transparent);
+  transform-origin: top;
+  animation: cue 1.8s ease-in-out infinite;
+}
+
+@keyframes cue {
+  0% { transform: scaleY(0); }
+  60% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+.cap small {
+  margin-top: 10px;
+  font: 500 12px Inter, sans-serif;
+  letter-spacing: 0.14em;
+  color: #5c554a;
+}
+
+#outro {
+  justify-content: flex-end;
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 90px);
+  opacity: 0;
+}
+
+#outro h2 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(20px, 5vw, 36px);
+  background: rgba(250, 249, 246, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 12px 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(197, 161, 91, 0.4);
+  color: #1A1816;
+}
+
+/* Inspection Sheet Drawer */
+#sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 18px 22px calc(env(safe-area-inset-bottom, 0px) + 20px);
+  background: rgba(250, 249, 246, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #1A1816;
+  border-top: 2.5px solid #C5A15B;
+  box-shadow: 0 -12px 50px rgba(0, 0, 0, 0.22);
+  transform: translateY(105%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+#sheet.on {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#sheet h3 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(18px, 4.6vw, 26px);
+  color: #1A1816;
+  margin: 0;
+}
+
+#sheet p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  color: #5c554a;
+  max-width: 38em;
+  line-height: 1.5;
+}
+
+#sheet > div:first-child {
+  flex: 1 1 260px;
+}
+
+#sheet .ctl {
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+
+#sheet button {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #C5A15B;
+  background: #1A1816;
+  color: #FAF9F6;
+  font: 500 13px Inter, sans-serif;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+#sheet button:hover:not(:disabled) {
+  background: #C5A15B;
+  color: #1A1816;
+}
+
+#sheet button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Right Rail Pagination Dots */
+#rail {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: opacity 0.3s;
+}
+
+#rail button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+
+#rail button::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  border-radius: 50%;
+  border: 1.5px solid #1A1816;
+  background: rgba(250, 249, 246, 0.85);
+  transition: transform 0.25s, background 0.25s, border-color 0.25s;
+}
+
+#rail button.on::before {
+  background: #C5A15B;
+  border-color: #C5A15B;
+  transform: scale(1.6);
+}
+
+#stage.insp #rail {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro {
+  justify-content: center;
+}
+
+/* User Request: Completely removed HUD telemetry, right-rail dots, and instructions from UI */
+#hudTop, #hudBot, #rail, #hudTxt, #bar {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

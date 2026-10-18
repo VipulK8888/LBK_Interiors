@@ -19,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Initializing LBK Cinematic Scrollytelling Experience...');
 
   // 0. Initialize 3D Spatial Flythrough Scrollytelling Hero (Scene 01)
-  const heroTrack = document.getElementById('hero-scrolly-track');
+  const heroTrack = document.getElementById('track') || document.getElementById('hero-scrolly-track');
   let hero3DInstance = null;
   if (heroTrack) {
     hero3DInstance = new Hero3DScrollytelling({
-      containerId: 'hero-3d-viewport',
-      trackId: 'hero-scrolly-track'
+      trackId: heroTrack.id,
+      canvasId: 'gl',
+      stageId: 'stage'
     });
   }
 

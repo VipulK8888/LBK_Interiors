@@ -378,7 +378,7 @@ export class ScrollytellingEngine {
     const scene09 = document.getElementById('scene-09');
     if (!scene09) return;
 
-    const mainBanner = scene09.querySelector('.max-w-\[1440px\]');
+    const mainBanner = scene09.querySelector('[class*="max-w-"]');
     if (mainBanner) {
       gsap.fromTo(mainBanner,
         { scale: 0.95, opacity: 0.85 },
