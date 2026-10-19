@@ -765,18 +765,25 @@ body {
 }
 
 #floorTag {
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
-  background: rgba(26, 24, 22, 0.85);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 76px);
+  background: rgba(26, 24, 22, 0.88);
   color: #C5A15B;
   font-weight: 500;
   border: 1px solid rgba(197, 161, 91, 0.35);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  font-size: 10px;
+  padding: 8px 16px;
+  letter-spacing: 0.08em;
+  max-width: calc(100% - 32px);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   #floorTag {
     bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+    font-size: 11px;
+    padding: 10px 18px;
   }
 }
 
@@ -987,4 +994,381 @@ body {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+
+/* ==========================================================================
+   MOBILE-FIRST HERO & INTRO GLASS CARD SPECIFICATIONS
+   ========================================================================== */
+#intro {
+  justify-content: center;
+  padding: 0 16px;
+  pointer-events: none;
+}
+
+.intro-card {
+  pointer-events: auto;
+  max-width: min(348px, 92vw);
+  background: rgba(250, 249, 246, 0.90);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(197, 161, 91, 0.38);
+  border-radius: 20px;
+  padding: 22px 18px 18px;
+  box-shadow: 0 16px 42px -8px rgba(40, 30, 20, 0.14), 0 4px 16px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.intro-badge {
+  font: 600 10px/1 Inter, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #775A1B;
+  background: rgba(197, 161, 91, 0.16);
+  border: 1px solid rgba(197, 161, 91, 0.32);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.intro-card h1 {
+  font-family: Cinzel, Georgia, serif;
+  font-size: clamp(34px, 8.5vw, 68px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0;
+  color: #1A1816;
+  line-height: 1.1;
+}
+
+.intro-card p {
+  margin: 10px 0 0;
+  font-size: clamp(12px, 3.2vw, 15px);
+  letter-spacing: 0.12em;
+  color: #4a453c;
+  line-height: 1.5;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.intro-sub {
+  font-size: 11px;
+  color: #7d7568;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+  .intro-card {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    max-width: 44em;
+    padding: 0;
+  }
+  .intro-badge {
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile-First 3D Sheet & Inspection Drawer
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  #sheet {
+    border-radius: 20px 20px 0 0;
+    padding: 16px 18px calc(env(safe-area-inset-bottom, 0px) + 24px);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.28);
+  }
+  #sheet::before {
+    content: "";
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(197, 161, 91, 0.45);
+    margin: -4px auto 12px;
+    display: block;
+    flex-basis: 100%;
+  }
+  #sheet #zIn, #sheet #zOut {
+    display: none !important;
+  }
+  #sheet .ctl {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  #sheet button {
+    flex: 1;
+    height: 44px;
+    font-size: 13px;
+  }
+  #sheet #shX {
+    flex: 1.2;
+    background: #C5A15B;
+    color: #1A1816;
+    font-weight: 600;
+  }
+
+  /* Inspection Modal Dialog for Projects (Scene 03) */
+  .project-modal-backdrop {
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+  .project-modal-dialog {
+    max-height: 86vh !important;
+    width: 100% !important;
+    border-radius: 22px 22px 0 0 !important;
+    border-bottom: none !important;
+    margin: 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  }
+  .project-modal-backdrop.is-open .project-modal-dialog {
+    transform: translateY(0) !important;
+  }
+  .project-modal-dialog .bg-surface-container {
+    min-height: 190px !important;
+    max-height: 220px !important;
+  }
+  .project-modal-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16) !important;
+  }
+}
+
+
+/* ==========================================================================
+   ACTIVE VILLA PROMPT PILL IN 3D PAVILION (SCENE 01)
+   ========================================================================== */
+.active-villa-pill {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 76px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(26, 24, 22, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 161, 91, 0.45);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  max-width: calc(100% - 24px);
+}
+
+.active-villa-pill.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.active-villa-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C5A15B;
+  box-shadow: 0 0 8px #C5A15B;
+  flex-shrink: 0;
+}
+
+.active-villa-title {
+  font-family: Cinzel, Georgia, serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #FAF9F6;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.active-villa-btn {
+  background: #C5A15B;
+  color: #1A1816;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.active-villa-btn:hover {
+  background: #e8c178;
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   ARCHITECTURAL VILLA WORK INSPECTION MODAL (FULL DETAILS & ZOOM)
+   ========================================================================== */
+.villa-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 12, 10, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.villa-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.villa-modal-dialog {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 1060px;
+  max-height: 92vh;
+  border-radius: 24px;
+  box-shadow: 0 32px 80px -16px rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(197, 161, 91, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.villa-modal-backdrop.is-open .villa-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.villa-modal-header {
+  padding: 16px 20px 12px;
+  background: #FAF9F6;
+  border-bottom: 1px solid rgba(197, 161, 91, 0.2);
+}
+
+.villa-modal-drag-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(197, 161, 91, 0.45);
+  margin: 0 auto 10px;
+}
+
+.villa-tabs-track {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.villa-tabs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.villa-tab-btn {
+  padding: 6px 14px;
+  background: #EFEEEB;
+  border: 1px solid transparent;
+  color: #6B6B65;
+  font: 600 11px/1 Inter, sans-serif;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.villa-tab-btn:hover {
+  background: #E5E3DE;
+  color: #1A1816;
+}
+
+.villa-tab-btn.active {
+  background: #C5A15B;
+  color: #1A1816;
+  border-color: #775A1B;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(197, 161, 91, 0.3);
+}
+
+.villa-modal-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.villa-img-container {
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.villa-modal-image.is-zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+}
+
+@media (max-width: 640px) {
+  .villa-modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .villa-modal-dialog {
+    max-height: 90vh;
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+    transform: translateY(100%);
+  }
+  .active-villa-pill {
+    top: calc(env(safe-area-inset-top, 0px) + 68px);
+    padding: 5px 6px 5px 12px;
+  }
+  .active-villa-title {
+    font-size: 10px;
+  }
+  .active-villa-btn {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .villa-modal-image {
+    max-height: 320px !important;
+  }
+  .villa-modal-body > .grid > div:first-child {
+    min-height: 240px !important;
+    max-height: 340px !important;
+  }
+  .villa-modal-body > .grid > div:last-child {
+    max-height: none !important;
+    padding: 18px 16px !important;
+  }
 }

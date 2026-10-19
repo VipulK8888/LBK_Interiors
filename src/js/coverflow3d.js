@@ -215,11 +215,13 @@ export class CoverflowCarousel {
       modal.className = 'project-modal-backdrop';
       modal.innerHTML = `
         <div class="project-modal-dialog" role="dialog" aria-modal="true">
+          <!-- Mobile drag handle pill -->
+          <div class="w-10 h-1 bg-outline-variant/60 rounded-full mx-auto my-2.5 sm:hidden"></div>
           <button class="project-modal-close" id="modal-close-btn" aria-label="Close modal">
             <span class="material-symbols-outlined text-[20px]">close</span>
           </button>
           <div class="grid grid-cols-1 md:grid-cols-12 gap-0 overflow-hidden rounded-[20px]">
-            <div class="md:col-span-7 bg-surface-container relative min-h-[360px] md:min-h-[500px]">
+            <div class="md:col-span-7 bg-surface-container relative min-h-[200px] md:min-h-[480px]">
               <img id="modal-img" src="" alt="Project Photo" class="w-full h-full object-cover">
               <div class="absolute bottom-4 left-4 bg-surface-container-lowest/95 backdrop-blur-md px-3.5 py-1.5 border border-outline-variant/30 shadow-md">
                 <span id="modal-badge" class="font-label-sm text-label-sm uppercase tracking-[0.15em] text-primary font-bold"></span>

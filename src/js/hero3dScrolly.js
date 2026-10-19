@@ -12,12 +12,84 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
-  { n: "Villa Alankrit", s: "Grand Double-Height Foyer & Marble Staircase", file: "/slabs/slab_01.jpg", k: "vein", base: "#ecebe7", vein: "#7d7d85", w: 1 },
-  { n: "The Mewar Penthouse", s: "Panda & Statuario Bookmatched Marble Lounge", file: "/slabs/slab_02.jpg", k: "vein", base: "#f4f2ee", vein: "#8a7f6a", w: 1.6 },
-  { n: "Sovereign Villa", s: "Palatial Great Room & Statuario Feature Wall", file: "/slabs/slab_03.jpg", k: "strata", base: "#c99a62", vein: "#8f5f33" },
-  { n: "Lakefront Residence", s: "Master Bath Cladding & Floating Stone Vanity", file: "/slabs/slab_04.jpg", k: "vein", base: "#8fa3a6", vein: "#e8efe9", w: 1.3 },
-  { n: "Hilltop Suite", s: "High-Gloss Italian Crema Marfil Living Room", file: "/slabs/slab_05.jpg", k: "chips", base: "#d9d2c4" },
-  { n: "Royal Orchid Estate", s: "Turnkey Villa Architecture & Stone Pool Deck", file: "/slabs/slab_06.jpg", k: "vein", base: "#14120f", vein: "#C5A15B", w: 1.8 }
+  {
+    n: "Villa Alankrit",
+    s: "Grand Double-Height Foyer & Marble Staircase",
+    file: "/slabs/slab_01.jpg",
+    loc: "Sukher Luxury Foothills, Udaipur",
+    scope: "12,800 sq ft Double-Height Foyer & Floating Staircase",
+    stone: "Imported First-Choice Statuario & Calacatta Gold Marble",
+    civil: "Seismic RCC Cantilever Core, 1:3 Calibrated Polymer Screed, Concealed Steel Stringers",
+    finish: "9-Stage Diamond Crystallization (Specular Gloss 98+)",
+    joint: "0.0mm Lippage / Zero-Void Calibrated Bedding",
+    desc: "A monumental double-height entrance hall with continuous bookmatched Italian marble flooring flowing seamlessly across monolithic slabs. The floating staircase features cantilevered marble treads supported by a concealed high-tensile steel core with flush-mounted glass balustrades.",
+    k: "vein", base: "#ecebe7", vein: "#7d7d85", w: 1
+  },
+  {
+    n: "The Mewar Penthouse",
+    s: "Panda & Statuario Bookmatched Marble Lounge",
+    file: "/slabs/slab_02.jpg",
+    loc: "Udaipur Skyline Enclave",
+    scope: "5,400 sq ft Living & Dining Grand Suite",
+    stone: "Bookmatched Panda Marble & Bianco Statuario",
+    civil: "Calibrated Sub-Base Screed, Expansion Joints at Columns, Heavy Slab Suction Installation",
+    finish: "Ultra-High Gloss Mirror Diamond Polish",
+    joint: "0.0mm Precision Bookmatched Vein Alignment",
+    desc: "Monumental bookmatched Panda marble feature wall with striking organic charcoal and black veining mirrored across vertical planes. Precision dry-laid at the yard prior to site installation to ensure 100% vein continuity from floor to ceiling.",
+    k: "vein", base: "#f4f2ee", vein: "#8a7f6a", w: 1.6
+  },
+  {
+    n: "Sovereign Villa",
+    s: "Palatial Great Room & Statuario Feature Wall",
+    file: "/slabs/slab_03.jpg",
+    loc: "Shobhagpura Heights",
+    scope: "8,600 sq ft Grand Living Hall & Architectural Accent",
+    stone: "Italian Statuario Marble & Hand-Finished Brass Trims",
+    civil: "Recessed Architectural Cove Framing, Rigid Sub-Floor Mortar Bedding, Anti-Crack Membrane",
+    finish: "High-Reflectance Vitrified Polish (Gloss 95+)",
+    joint: "Ultra-Slim 0.5mm Epoxy Joints with Color-Matched Resin",
+    desc: "Expansive formal drawing hall featuring seamless floor-to-ceiling bookmatched marble claddings with integrated architectural tray lighting. Floor surfaces laid with laser-calibrated water lines ensuring complete structural uniformity.",
+    k: "strata", base: "#c99a62", vein: "#8f5f33"
+  },
+  {
+    n: "Lakefront Residence",
+    s: "Master Bath Cladding & Floating Stone Vanity",
+    file: "/slabs/slab_04.jpg",
+    loc: "Fatehsagar Lakefront Enclave",
+    scope: "2,200 sq ft Master Bathroom Suite & Wet Rooms",
+    stone: "Dark Emperador & Statuario Exotic Quartzite",
+    civil: "Multi-Layer Elastomeric Tanking, Concealed Linear Drains, Heavy Vanity Wall Anchors",
+    finish: "Honed Silk Velvet & High-Gloss Countertop Polish",
+    joint: "100% Waterproof Epoxy Joint System / Flush Sub-Drainage",
+    desc: "Bespoke master bathing sanctuary featuring full-height monolithic marble panels with backlit floating stone vanities. Zero-step curbless shower enclosures engineered with precision fall slopes for instant water clearance.",
+    k: "vein", base: "#8fa3a6", vein: "#e8efe9", w: 1.3
+  },
+  {
+    n: "Hilltop Suite",
+    s: "High-Gloss Italian Crema Marfil Living Room",
+    file: "/slabs/slab_05.jpg",
+    loc: "Ambavgarh Hilltop Bungalow",
+    scope: "4,800 sq ft Formal Reception & Living Areas",
+    stone: "Crema Marfil Select Grade & Botticino Classico",
+    civil: "Reinforced Cement Concrete Leveling, Wall Skirting Reglets, Acoustic Decoupling Underlay",
+    finish: "Mirror Specular Crystallization (Gloss 96)",
+    joint: "0.0mm Lippage / Hairline Micro-Bevel Edges",
+    desc: "Luminous living area executed with premium beige Italian marble that reflects ambient natural light throughout the residence. Custom classical mouldings and integrated stone thresholds with flush transitions to hardwood suites.",
+    k: "chips", base: "#d9d2c4"
+  },
+  {
+    n: "Royal Orchid Estate",
+    s: "Turnkey Villa Architecture & Stone Pool Deck",
+    file: "/slabs/slab_06.jpg",
+    loc: "Badi Hills Luxury Estate",
+    scope: "18,500 sq ft Complete Turnkey Villa & Outdoor Pool Deck",
+    stone: "Flamed Granite Pool Coping, Ashlar Stone Facade & Porcelain Paving",
+    civil: "Complete RCC Framed Superstructure, Ashlar Masonry, Infinity Pool Concrete Shell, Structural Waterproofing",
+    finish: "Thermal Flamed Anti-Slip R11 (Exterior) & Diamond Honed (Interior)",
+    joint: "1:100 Laser Gradient Drainage / Seismic Structural Compliance",
+    desc: "End-to-end turnkey civil construction of a luxury contemporary bungalow. Includes seismic-resistant concrete frame, thermal-flamed anti-slip granite pool decking with waterjet bullnosed rims, exterior ventilated facade stone cladding, and luxury interior floorings.",
+    k: "vein", base: "#14120f", vein: "#C5A15B", w: 1.8
+  }
 ];
 
 const ZS = [-280, -640, -1000, -1360, -1720, -2340];
@@ -639,11 +711,12 @@ export class Hero3DScrollytelling {
       new THREE.MeshBasicMaterial({ color: 0xD4AF37, transparent: true, opacity: 0.85, fog: false })
     );
     scan.position.z = D / 2 + 0.6;
+    // Discrete polished nameplate placed neatly below the frame so 100% of the artwork photo is visible
     const pl = new THREE.Mesh(
-      new THREE.PlaneGeometry(W * 0.9, W * 0.9 * 200 / 1024),
+      new THREE.PlaneGeometry(W * 0.85, 20),
       new THREE.MeshBasicMaterial({ map: this.plaque(P), transparent: true })
     );
-    pl.position.set(0, -H / 2 + 26, D / 2 + 0.5);
+    pl.position.set(0, -H / 2 - 14, D / 2 + 0.5);
 
     g.add(brass, slab, wire, scan, pl);
     g.position.set(0, 0, ZS[i]);
@@ -1021,30 +1094,77 @@ export class Hero3DScrollytelling {
 
   open(i) {
     this.sel = this.ins = i;
-    this.zt = 0;
-    this.zoom = 0;
-    const shN = document.getElementById('shN');
-    const shD = document.getElementById('shD');
-    const pv = document.getElementById('pv');
-    const nx = document.getElementById('nx');
-    const sheet = document.getElementById('sheet');
-    const hudBot = document.getElementById('hudBot');
-    const stage = document.getElementById(this.stageId);
+    this.openVillaInspector(i);
+  }
 
-    if (shN) shN.textContent = PROJECTS[i].n;
-    if (shD) shD.textContent = `${i + 1} of ${PROJECTS.length}. ${PROJECTS[i].s}. ${DESC[i]}`;
-    if (pv) pv.disabled = i === 0;
-    if (nx) nx.disabled = i === PROJECTS.length - 1;
-    if (sheet) sheet.classList.add('on');
-    if (hudBot) hudBot.style.visibility = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    if (stage) {
-      stage.style.touchAction = 'none';
-      stage.classList.add('insp');
+  openVillaInspector(i) {
+    this.sel = this.ins = i;
+    const p = PROJECTS[i];
+    if (!p) return;
+
+    const modal = document.getElementById('villa-inspection-modal');
+    if (modal) {
+      const img = modal.querySelector('#villa-modal-img');
+      const badge = modal.querySelector('#villa-modal-badge');
+      const loc = modal.querySelector('#villa-modal-loc');
+      const title = modal.querySelector('#villa-modal-title');
+      const tagline = modal.querySelector('#villa-modal-tagline');
+      const desc = modal.querySelector('#villa-modal-desc');
+      const scope = modal.querySelector('#villa-modal-scope');
+      const stone = modal.querySelector('#villa-modal-stone');
+      const civil = modal.querySelector('#villa-modal-civil');
+      const finish = modal.querySelector('#villa-modal-finish');
+      const joint = modal.querySelector('#villa-modal-joint');
+      const prevBtn = modal.querySelector('#villa-modal-prev');
+      const nextBtn = modal.querySelector('#villa-modal-next');
+      const numIndicator = modal.querySelector('#villa-modal-num');
+
+      if (img) {
+        img.src = p.file;
+        img.alt = p.n;
+        img.classList.remove('is-zoomed');
+      }
+      if (badge) badge.textContent = `VILLA 0${i + 1} OF 06`;
+      if (loc) loc.textContent = p.loc;
+      if (title) title.textContent = p.n;
+      if (tagline) tagline.textContent = p.s;
+      if (desc) desc.textContent = p.desc;
+      if (scope) scope.textContent = p.scope;
+      if (stone) stone.textContent = p.stone;
+      if (civil) civil.textContent = p.civil;
+      if (finish) finish.textContent = p.finish;
+      if (joint) joint.textContent = p.joint;
+      if (numIndicator) numIndicator.textContent = `0${i + 1} / 06`;
+
+      if (prevBtn) prevBtn.disabled = i === 0;
+      if (nextBtn) nextBtn.disabled = i === PROJECTS.length - 1;
+
+      // Update selector tabs
+      const tabs = modal.querySelectorAll('.villa-tab-btn');
+      tabs.forEach((tab, idx) => {
+        if (idx === i) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     }
-    const shX = document.getElementById('shX');
-    if (shX) shX.focus({ preventScroll: true });
+  }
+
+  closeVillaInspector() {
+    this.close();
+    const modal = document.getElementById('villa-inspection-modal');
+    if (modal) {
+      modal.classList.remove('is-open');
+      const img = modal.querySelector('#villa-modal-img');
+      if (img) img.classList.remove('is-zoomed');
+    }
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   close() {
@@ -1070,21 +1190,30 @@ export class Hero3DScrollytelling {
     const w = st ? st.clientWidth : window.innerWidth;
     const h = st ? st.clientHeight : window.innerHeight;
     this.mobile = w < 768;
+    const aspect = w / h;
+    const isPortrait = aspect < 1;
 
     this.r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.r.setSize(w, h, false);
-    this.cam.aspect = w / h;
-    this.cam.fov = this.mobile ? 57 : 48;
+    this.cam.aspect = aspect;
+
+    // Mobile-first dynamic FOV: Wider vertical FOV on portrait to frame slabs with comfortable breathing room
+    if (this.mobile) {
+      this.cam.fov = isPortrait ? 65 : 54;
+    } else {
+      this.cam.fov = 48;
+    }
     this.cam.updateProjectionMatrix();
 
-    const lat = this.mobile ? 0.44 : 1;
-    const sc = this.mobile ? 0.62 : 1;
+    // Mobile-first slab positioning and scaling to eliminate side-clipping
+    const lat = this.mobile ? (isPortrait ? 0.28 : 0.44) : 1;
+    const sc = this.mobile ? (isPortrait ? 0.52 : 0.62) : 1;
 
     this.mons.forEach(m => {
       const k = m.final ? 1.25 : 1;
       m.g.scale.setScalar(sc * k);
       m.g.position.x = SIDE[m.i] * 150 * lat;
-      m.g.rotation.y = -SIDE[m.i] * 0.32;
+      m.g.rotation.y = -SIDE[m.i] * (this.mobile ? 0.22 : 0.32);
     });
   }
 
@@ -1107,7 +1236,8 @@ export class Hero3DScrollytelling {
     const e = this.k * this.k * (3 - 2 * this.k);
 
     const P = new THREE.Vector3(pos.x + this.mx * 14, pos.y + 8 - this.my * 6, pos.z);
-    const L = new THREE.Vector3(pos.x + tan.x * 300 + this.mx * 30, pos.y - this.my * 14, pos.z + tan.z * 300);
+    const tanXMult = this.mobile ? 110 : 300;
+    const L = new THREE.Vector3(pos.x + tan.x * tanXMult + this.mx * (this.mobile ? 16 : 30), pos.y - this.my * (this.mobile ? 8 : 14), pos.z + tan.z * 300);
 
     if (this.ins !== null && e > 0) {
       const m = this.mons[this.ins];
@@ -1118,9 +1248,11 @@ export class Hero3DScrollytelling {
       const Hs = this.r.domElement.clientHeight || window.innerHeight;
       const sheetEl = document.getElementById('sheet');
       const f = clamp((Hs - (sheetEl ? sheetEl.offsetHeight : 0)) / Hs, 0.3, 1);
-      const dist = Math.max(hh * 0.56 / (tf * f), ww * 0.56 / (tf * this.cam.aspect)) * (1 - 0.62 * this.zoom);
+      const mobileDistFactor = this.mobile ? 0.68 : 0.56;
+      const dist = Math.max(hh * mobileDistFactor / (tf * f), ww * mobileDistFactor / (tf * this.cam.aspect)) * (1 - 0.62 * this.zoom);
       const cx = m.g.position.x + this.mx * ww * 0.35 * this.zoom;
-      const cy = m.g.position.y - (0.5 - f / 2) * 2 * tf * dist - this.my * hh * 0.3 * this.zoom;
+      const yShiftMobile = this.mobile ? (hh * 0.28) : 0;
+      const cy = m.g.position.y - (0.5 - f / 2) * 2 * tf * dist + yShiftMobile - this.my * hh * 0.3 * this.zoom;
       P.lerp(new THREE.Vector3(cx, cy, m.g.position.z + dist), e);
       L.lerp(new THREE.Vector3(cx, cy, m.g.position.z), e);
     }
@@ -1137,8 +1269,15 @@ export class Hero3DScrollytelling {
 
     this.mons.forEach(m => {
       m.scan.position.y = Math.sin(t * 1.3 + m.i) * 105;
-      const tr = -SIDE[m.i] * 0.32 * (m.i === this.ins ? 1 - e : 1);
-      m.ry = m.ry === undefined ? tr : m.ry + (tr - m.ry) * 0.14;
+      
+      // Auto-facing alignment: when camera approaches slab, rotate it straight forward to face user squarely
+      const distZ = Math.abs(pos.z - ZS[m.i]);
+      const focus = Math.max(0, 1 - distZ / 380);
+      const easeFocus = focus * focus * (3 - 2 * focus);
+      const baseRot = -SIDE[m.i] * (this.mobile ? 0.22 : 0.32);
+      const tr = (m.i === this.ins) ? 0 : (baseRot * (1 - easeFocus * 0.94));
+
+      m.ry = m.ry === undefined ? tr : m.ry + (tr - m.ry) * 0.16;
       m.g.rotation.y = m.ry;
       m.pool.position.set(m.g.position.x, -124.4, m.g.position.z);
       m.pool.scale.setScalar(m.g.scale.x);
@@ -1183,6 +1322,21 @@ export class Hero3DScrollytelling {
     }
     if (this.hud.o) {
       this.hud.o.style.opacity = clamp((this.sp - 0.9) / 0.08, 0, 1);
+    }
+
+    // In-Pavilion Floating Active Villa Pill
+    const villaPill = document.getElementById('activeVillaPill');
+    const villaTitle = document.getElementById('activeVillaTitle');
+    const isInsideGallery = this.sp > 0.04 && this.sp < 0.94;
+
+    if (villaPill && villaTitle) {
+      if (isInsideGallery) {
+        villaPill.classList.add('visible');
+        villaTitle.textContent = `0${z + 1}/06 • ${PROJECTS[z].n}`;
+        villaPill.dataset.activeIdx = z;
+      } else {
+        villaPill.classList.remove('visible');
+      }
     }
   }
 

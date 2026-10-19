@@ -382,7 +382,27 @@
   <!-- =====================================================================
        FLOATING MOBILE WHATSAPP QUICK-ACTION CTA
        ===================================================================== -->
-  <aside class="fixed bottom-5 right-4 z-40 sm:bottom-6 sm:right-6 group" aria-label="Quick WhatsApp Contact">
+  <!-- =====================================================================
+       MOBILE BOTTOM DOCK (THUMB-FIRST 1-TAP CALL & WHATSAPP)
+       ===================================================================== -->
+  <aside class="fixed bottom-3 inset-x-3 z-40 sm:hidden pointer-events-none" aria-label="Quick Mobile Actions">
+    <div class="max-w-md mx-auto bg-surface-container-lowest/92 backdrop-blur-xl border border-outline-variant/40 rounded-full p-1.5 shadow-[0_12px_36px_rgba(0,0,0,0.18)] flex items-center justify-between gap-2 pointer-events-auto">
+      <a href="tel:+918888199091" class="flex-1 py-2.5 px-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-full flex items-center justify-center gap-1.5 transition-all active:scale-95 text-xs font-mono font-bold border border-outline-variant/20 shadow-sm" aria-label="Direct Call">
+        <span class="text-primary text-sm">📞</span>
+        <span>Call</span>
+      </a>
+      <a href="https://wa.me/918888199091?text=Hello%20Lalchand%20ji%2C%20I%20would%20like%20to%20inquire%20about%20civil%20contracting%20and%20stone%20work%20for%20my%20project." target="_blank" rel="noopener noreferrer" class="flex-[1.4] py-2.5 px-3 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full flex items-center justify-center gap-1.5 transition-all active:scale-95 text-xs font-bold shadow-[0_4px_16px_rgba(37,211,102,0.35)]" aria-label="WhatsApp Chat">
+        <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.9-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="#quote-section" class="py-2.5 px-3 bg-primary text-on-primary rounded-full flex items-center justify-center transition-all active:scale-95 text-xs font-semibold shadow-sm" aria-label="Book Quote">
+        <span>Quote</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Desktop Floating WhatsApp Pill (hidden on mobile to avoid UI overlap) -->
+  <aside class="hidden sm:block fixed bottom-6 right-6 z-40 group" aria-label="Quick WhatsApp Contact">
     <a href="https://wa.me/918888199091?text=Hello%20Lalchand%20ji%2C%20I%20would%20like%20to%20inquire%20about%20civil%20contracting%20and%20stone%20work%20for%20my%20project." 
        target="_blank" 
        rel="noopener noreferrer"
@@ -413,20 +433,31 @@
             
             <!-- Intro Card Overlay (Editorial Arrival) -->
             <div class="cap" id="intro">
-              <h1>LBK</h1>
-              <p>LALCHAND BANSHIDHAR KUMAWAT<br>Civil work contractor &amp; architectural stone, Mumbai</p>
-              <span class="cue"></span>
-              <small>Scroll to begin</small>
+              <div class="intro-card">
+                <span class="intro-badge">Architectural Stone &amp; Luxury Civil</span>
+                <h1>LBK</h1>
+                <p>LALCHAND BANSHIDHAR KUMAWAT<br><span class="intro-sub">Civil Contractor &amp; Architectural Stone • Mumbai</span></p>
+                <span class="cue"></span>
+                <small>Scroll or Swipe to explore</small>
+              </div>
             </div>
             
             <!-- Outro Card Overlay -->
             <div class="cap" id="outro">
               <h2>Turnkey luxury interiors</h2>
             </div>
-            </div>
             
             <!-- Dynamic Floor Material Notification Pill -->
             <div class="pill" id="floorTag"></div>
+            <!-- In-Pavilion Floating Active Villa Pill (Tap to Inspect High-Res Details) -->
+            <div id="activeVillaPill" class="active-villa-pill" role="region" aria-label="Current Villa in view">
+              <span class="active-villa-dot"></span>
+              <span id="activeVillaTitle" class="active-villa-title">01/06 • Villa Alankrit</span>
+              <button id="inspectActiveVillaBtn" class="active-villa-btn" aria-label="Inspect high-resolution details">
+                <span>Inspect High-Res Details</span>
+                <span class="material-symbols-outlined text-[15px]">zoom_in</span>
+              </button>
+            </div>
             
             <!-- Tap-to-Inspect Interactive Bottom Sheet Drawer -->
             <div id="sheet" role="dialog" aria-label="Project detail">
@@ -1029,7 +1060,7 @@
                   </div>
                   <div class="form-group">
                     <label class="block font-label-sm text-label-sm uppercase tracking-[0.15em] text-on-surface-variant mb-2 transition-colors">Phone Number *</label>
-                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="+91 88881 99091" required type="tel" />
+                    <input class="w-full bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:bg-surface-container-lowest shadow-inner border border-transparent focus:border-primary transition-all" placeholder="+91 98765 43210" required type="tel" />
                   </div>
                 </div>
 
@@ -1171,5 +1202,126 @@
 
   <!-- Master JavaScript Entrypoint -->
   <script type="module" src="/src/js/main.js"></script>
+  <!-- =====================================================================
+       HIGH-RESOLUTION ARCHITECTURAL VILLA WORK INSPECTION MODAL
+       Allows comprehensive examination of all 6 villa/bungalow projects
+       ===================================================================== -->
+  <div id="villa-inspection-modal" class="villa-modal-backdrop" role="dialog" aria-modal="true" aria-label="Architectural Villa Inspection">
+    <div class="villa-modal-dialog">
+      
+      <!-- Top Bar: Mobile drag handle & Header -->
+      <div class="villa-modal-header">
+        <div class="villa-modal-drag-handle sm:hidden"></div>
+        <div class="flex items-center justify-between w-full">
+          <div class="flex items-center gap-2.5">
+            <span id="villa-modal-badge" class="px-3 py-1 bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold uppercase tracking-wider rounded-full">
+              VILLA 01 OF 06
+            </span>
+            <span id="villa-modal-loc" class="text-xs font-mono text-on-surface-variant hidden sm:inline">
+              Sukher Luxury Foothills, Udaipur
+            </span>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button id="villa-zoom-btn" class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/30 text-on-surface text-xs font-medium rounded-full flex items-center gap-1.5 transition-all shadow-sm" aria-label="Toggle 2X Zoom">
+              <span class="material-symbols-outlined text-[16px] text-primary">search</span>
+              <span id="villa-zoom-txt">2X Zoom</span>
+            </button>
+            <button id="villa-modal-close-btn" class="w-8 h-8 rounded-full bg-surface-container hover:bg-primary hover:text-white flex items-center justify-center text-on-surface transition-all" aria-label="Close modal">
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 6-Villa Quick Switcher Tabs -->
+        <div class="villa-tabs-track mt-3">
+          <button class="villa-tab-btn active" data-index="0">01 Alankrit</button>
+          <button class="villa-tab-btn" data-index="1">02 Mewar Penthouse</button>
+          <button class="villa-tab-btn" data-index="2">03 Sovereign</button>
+          <button class="villa-tab-btn" data-index="3">04 Lakefront</button>
+          <button class="villa-tab-btn" data-index="4">05 Hilltop</button>
+          <button class="villa-tab-btn" data-index="5">06 Royal Orchid</button>
+        </div>
+      </div>
+
+      <!-- Main Inspection Body -->
+      <div class="villa-modal-body">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+          
+          <!-- Left: Ultra High-Resolution Photo Viewer with Zoom -->
+          <div class="lg:col-span-7 bg-[#14120f] relative overflow-hidden flex items-center justify-center min-h-[300px] sm:min-h-[420px] lg:min-h-[580px] p-2 sm:p-4">
+            <div id="villa-img-container" class="villa-img-container w-full h-full flex items-center justify-center">
+              <img id="villa-modal-img" src="/slabs/slab_01.jpg" alt="Villa Architectural Work" class="villa-modal-image object-contain max-h-[540px] w-auto transition-transform duration-300">
+            </div>
+            <div class="absolute bottom-4 left-4 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-white text-[11px] font-mono flex items-center gap-1.5 pointer-events-none">
+              <span class="w-2 h-2 rounded-full bg-green-400"></span>
+              <span>Ultra-Crisp 4K Architectural Photography</span>
+            </div>
+          </div>
+
+          <!-- Right: Comprehensive Civil & Stone Specifications Panel -->
+          <div class="lg:col-span-5 p-5 sm:p-7 flex flex-col justify-between bg-surface-container-lowest overflow-y-auto max-h-[580px]">
+            <div>
+              <h2 id="villa-modal-title" class="font-serif font-bold text-2xl sm:text-3xl text-on-surface mb-1">Villa Alankrit</h2>
+              <p id="villa-modal-tagline" class="text-sm font-sans text-primary font-semibold tracking-wide mb-4">Grand Double-Height Foyer & Marble Staircase</p>
+              
+              <p id="villa-modal-desc" class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-6 font-sans">
+                A monumental double-height entrance hall with continuous bookmatched Italian marble flooring flowing seamlessly across monolithic slabs.
+              </p>
+
+              <!-- Detailed Specifications Matrix -->
+              <div class="space-y-3 bg-surface p-4 border border-outline-variant/30 rounded-xl mb-6">
+                <div>
+                  <span class="text-[10px] uppercase tracking-wider font-mono text-on-surface-variant block">Scope & Area</span>
+                  <span id="villa-modal-scope" class="text-xs sm:text-sm font-semibold text-on-surface block">12,800 sq ft Double-Height Foyer & Floating Staircase</span>
+                </div>
+                <div class="border-t border-outline-variant/20 pt-2.5">
+                  <span class="text-[10px] uppercase tracking-wider font-mono text-on-surface-variant block">Stone Selection & Origin</span>
+                  <span id="villa-modal-stone" class="text-xs sm:text-sm font-semibold text-primary block">Imported First-Choice Statuario & Calacatta Gold Marble</span>
+                </div>
+                <div class="border-t border-outline-variant/20 pt-2.5">
+                  <span class="text-[10px] uppercase tracking-wider font-mono text-on-surface-variant block">Civil & Structural Masonry</span>
+                  <span id="villa-modal-civil" class="text-xs sm:text-sm font-semibold text-on-surface block">Seismic RCC Cantilever Core, 1:3 Calibrated Polymer Screed</span>
+                </div>
+                <div class="border-t border-outline-variant/20 pt-2.5 flex justify-between gap-2">
+                  <div>
+                    <span class="text-[10px] uppercase tracking-wider font-mono text-on-surface-variant block">Surface Polish</span>
+                    <span id="villa-modal-finish" class="text-xs font-semibold text-on-surface block">Diamond Crystallization (Gloss 98+)</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] uppercase tracking-wider font-mono text-on-surface-variant block">Joint Spec</span>
+                    <span id="villa-modal-joint" class="text-xs font-semibold text-primary block">0.0mm Lippage / Zero-Void</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer: Navigation & Consultation CTA -->
+            <div class="pt-4 border-t border-outline-variant/30 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <button id="villa-modal-prev" class="px-3 py-2 bg-surface-container hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all disabled:opacity-30 disabled:pointer-events-none" aria-label="Previous Villa">
+                    ‹ Previous
+                  </button>
+                  <button id="villa-modal-next" class="px-3 py-2 bg-surface-container hover:bg-primary hover:text-white rounded-lg text-xs font-bold transition-all disabled:opacity-30 disabled:pointer-events-none" aria-label="Next Villa">
+                    Next ›
+                  </button>
+                </div>
+                <span id="villa-modal-num" class="font-mono text-xs font-bold text-on-surface-variant">01 / 06</span>
+              </div>
+
+              <a href="#quote-section" id="villa-inquire-btn" class="w-full py-3 bg-primary text-on-primary font-bold text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 hover:bg-primary-dark transition-all shadow-md">
+                <span>Inquire About This Villa Craftsmanship</span>
+                <span>→</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>

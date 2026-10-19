@@ -195,3 +195,110 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('LBK Cinematic Experience Loaded Successfully.');
 });
+
+
+// Wire Architectural Villa High-Resolution Work Inspector
+function setupVillaInspector() {
+  const modal = document.getElementById('villa-inspection-modal');
+  const inspectBtn = document.getElementById('inspectActiveVillaBtn');
+  const activePill = document.getElementById('activeVillaPill');
+  const closeBtn = document.getElementById('villa-modal-close-btn');
+  const zoomBtn = document.getElementById('villa-zoom-btn');
+  const zoomTxt = document.getElementById('villa-zoom-txt');
+  const img = document.getElementById('villa-modal-img');
+  const prevBtn = document.getElementById('villa-modal-prev');
+  const nextBtn = document.getElementById('villa-modal-next');
+  const tabs = document.querySelectorAll('.villa-tab-btn');
+  const inquireBtn = document.getElementById('villa-inquire-btn');
+
+  let currentVillaIdx = 0;
+
+  const openForIndex = (idx) => {
+    currentVillaIdx = Math.max(0, Math.min(5, idx));
+    if (window.__lbk && typeof window.__lbk.openVillaInspector === 'function') {
+      window.__lbk.openVillaInspector(currentVillaIdx);
+    }
+  };
+
+  const closeModal = () => {
+    if (window.__lbk && typeof window.__lbk.closeVillaInspector === 'function') {
+      window.__lbk.closeVillaInspector();
+    } else if (modal) {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+  };
+
+  if (inspectBtn) {
+    inspectBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const activeIdx = activePill ? parseInt(activePill.dataset.activeIdx || '0', 10) : 0;
+      openForIndex(activeIdx);
+    });
+  }
+
+  if (activePill) {
+    activePill.addEventListener('click', () => {
+      const activeIdx = parseInt(activePill.dataset.activeIdx || '0', 10);
+      openForIndex(activeIdx);
+    });
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+
+  // Zoom toggle
+  if (zoomBtn && img) {
+    zoomBtn.addEventListener('click', () => {
+      const isZoomed = img.classList.toggle('is-zoomed');
+      if (zoomTxt) zoomTxt.textContent = isZoomed ? '1X Reset' : '2X Zoom';
+    });
+    img.addEventListener('click', () => {
+      const isZoomed = img.classList.toggle('is-zoomed');
+      if (zoomTxt) zoomTxt.textContent = isZoomed ? '1X Reset' : '2X Zoom';
+    });
+  }
+
+  // Previous & Next Navigation
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      openForIndex(currentVillaIdx - 1);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      openForIndex(currentVillaIdx + 1);
+    });
+  }
+
+  // Quick Switcher Tabs
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const idx = parseInt(tab.dataset.index, 10);
+      openForIndex(idx);
+    });
+  });
+
+  if (inquireBtn) {
+    inquireBtn.addEventListener('click', closeModal);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupVillaInspector);
+} else {
+  setupVillaInspector();
+}
